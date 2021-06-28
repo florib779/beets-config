@@ -1,0 +1,182 @@
+# http://paste.the-compiler.org/view/93f82670
+
+directory: ~/beets-music
+library: ~/beets-music/library.db
+
+import:
+  copy: no # Copy the files.
+  move: no # Move the files.
+  delete: no
+  write: no
+  autotag: no # Always try to autotag.
+  log: import.log # You can also use a path.
+  #resume: ask
+  #incremental: no # Don't record imported directories.
+  #quiet_fallback: skip # Skip in quite mode when there is no strong recommendation.
+  #none_rec_action: ask # Ask when there is no recommendation.
+  #timid: no # Don't ask for confirmation when the match is very close.
+  #default_action: apply # Apply is the default action.
+  #languages: en # Prefer transliterated English names.
+  detail: yes # Show all info, not only changes.
+
+# replace '\', '/', non printables and pre- and postfixed spaces.
+#replace:
+  #'[\\/]': -
+  #'[\x00-\x1f]': -
+  #'\s+$': ''
+  #'^\s+': ''
+
+#art_filename: cover # Cover art file name.
+
+#threaded: yes # Use mutliple threads during import.
+
+ui: # Use colors for the import command.
+  color: yes
+  colors:
+    text_success: green
+    text_warning: yellow
+    text_error: red
+    text_highlight: red
+    text_highlight_minor: lightgray
+    action_default: turquoise
+    action: blue
+
+#Original_date: no # Don't use the original date for the release.
+
+
+#Per_disc_numbering: no # The track numbers are incremented throughout a multi disk release.
+
+#match: # Auto tagger options.
+  #strong_rec_thresh: 0.001 # Only match 99.9% for auto import.
+  #medium_rec_thresh: 0.25
+  #rec_gap_thresh: 0.25
+  #max_rec:
+    #missing_tracks: low # Low recommendation for missing tracks.
+    #unmatched_tracks: low # Low recommendation for unmatched tracks.
+  #preferred:
+    #original_year: no # Don't prefer the year of release.
+  #ignored: missing_tracks unmatched_tracks
+  #required: year
+
+#paths: # Directory and naming scheme.
+  #default: $albumartist/$album%aunique{}/$track $title
+  #singleton: $artist/Non-Album/$title
+  #albumtype:soundtrack: Soundtracks/$album%aunique{}/$track $title
+  #comp: Compilations/$album%aunique{}/$track $title
+ 
+max_filename_length: 0  # 0 = unlimited.
+ 
+#verbose: no
+ 
+#statefile: state.pickle
+
+# Plugins #########################################################################################
+plugins:
+  #- absubmit # The absubmit plugin lets you submit acoustic analysis results to the AcousticBrainz server.
+  #- chroma # Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
+  #- discgogs # The discogs plugin extends the autotagger’s search capabilities to include matches from the Discogs database.
+  #- edit # The edit plugin lets you modify music metadata using your favorite text editor.
+  - fetchart # The plugin uses requests to fetch album art from the Web.
+  #- fromfilename # The fromfilename plugin helps to tag albums that are missing tags altogether but where the filenames contain useful information like the artist and title.
+  #- ftintitle # The ftintitle plugin automatically moves “featured” artists from the artist field to the title field.
+  #- importadded # The importadded plugin is useful when an existing collection is imported and the time when albums and items were added should be preserved.
+  #- info # The info plugin provides a command that dumps the current tag values for any file format supported by beets.
+  - lastimport
+  #- lastgenre # MusicBrainz actually doesn’t contain genre information
+  - lyrics
+  - mbcollection # The mbcollection plugin lets you submit your catalog to MusicBrainz to maintain your music collection list there.
+  #- mbsubmit # Provides an extra prompt choice during an import session that prints the tracks of the current album in a format that is parseable by MusicBrainz’s track parser.
+  #- mbsync # Lets you fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
+  #- missing # This plugin adds a new command, missing or miss, which finds and lists, for every album in your collection, which or how many tracks are missing.
+  #- permissions # The permissions plugin allows you to set file permissions for imported music files and its directories.
+  - replaygain
+  #- scrub The scrub plugin lets you remove extraneous metadata from files’ tags.
+  #- types # Lets you declare types for attributes you use in your library.
+  - web # A very basic alternative interface to beets that supplements the CLI.
+  #- zero # The zero plugin allows you to null fields in files’ metadata tags. Fields can be nulled unconditionally or conditioned on a pattern match. For example, the plugin can strip useless comments like “ripped by MyGreatRipper.”
+
+## Plugin configs
+absubmit:
+  auto: yes # beet absubmit
+acoustid: # You can help expand the Acoustid database by submitting fingerprints for the music in your collection.
+  apikey: YOUR-API-KEY # beet submit
+chroma:
+  auto: no
+fetchart:
+  auto: yes # Enable automatic album art fetching during import. Default: yes.
+  cautious: true # Pick only trusted album art by ignoring filenames that do not contain one of the keywords in "cover_names".
+  cover_names: # Prioritize images containing words in this list. Default: cover front art album folder. They are searched in the given order,
+    - cover
+    - front
+    - art
+    - album
+    - folder
+  enforce_ratio: no # Default
+  minwidth: 0 # Only images with a width bigger or equal to minwidth are considered as valid album art candidates. Default: 0.
+  maxwidth: 3000 # A maximum image width to downscale fetched images if they are too big. The height is recomputed so that the aspect ratio is preserved.
+  sources: # An asterisk * expands to all available sources. Default: filesystem coverart itunes amazon albumart.
+    - filesystem
+    - coverart
+    - fanarttv
+    #- google
+    #- itunes
+    #- amazon
+    - albumart
+ftintitle:
+  auto: no
+  drop: no
+lastfm:
+  user: FloriB
+lastgenre:
+  auto: no # Fetch genres automatically during import. Default: yes.
+  #canonical: no # Use a canonicalization tree. Setting this to yes will use a built-in tree. 
+  count: 5 # Number of genres to fetch. Default: 1
+  fallback: Pop/Rock # A string if to use a fallback genre when no genre is found. You can use the empty string '' to reset the genre. Default: None.
+  force: no # By default, beets will always fetch new genres, even if the files already have one. To instead leave genres in place in when they pass the whitelist, set the force option to no. 
+  #min_weight: 10 # Minimum popularity factor below which genres are discarded. Default: 10.
+  #prefer_specific: no # Sort genres by the most to least specific, rather than most to least popular. Default: no.
+  #source: track # Which entity to look up in Last.fm. Can be either artist, album or track. Default: album.
+  #whitelist: yes # The filename of a custom genre list, yes to use the internal whitelist, or no to consider all genres valid. Default: yes.
+lyrics:
+  auto: yes # Fetch lyrics automatically during import. Default: yes.
+  #fallback: None # By default, the file will be left unchanged when no lyrics are found. Use the empty string '' to reset the lyrics in such a case. Default: None.
+  force: no # By default, beets won’t fetch lyrics if the files already have ones. To instead always fetch lyrics, set the force option to yes. Default: no.
+  #google_API_key: Your Google API key (to enable the Google Custom Search backend). Default: None.
+  #google_engine_ID: The custom search engine to use. Default: The beets custom search engine, which gathers an updated list of sources known to be scrapeable.
+  sources: # List of sources to search for lyrics. An asterisk * expands to all available sources. Default: google lyricwiki musixmatch genius, i.e., all the available sources. Both it and the genius source will only be enabled if BeautifulSoup is installed.
+    - genius
+    - lyricwiki
+    - google # The google source will be automatically deactivated if no google_API_key is setup.
+    - musixmatch # Possibly just 30% of a whole song text @test
+missing:
+    #format: $albumartist - $album - $title # A specific format with which to print every track. This uses the same template syntax as beets’ path formats. The usage is inspired by, and therefore similar to, the list command. Default: format_item.
+    count: yes # Print a count of missing tracks per album, with format defaulting to $albumartist - $album: $missing. Default: no.
+    total: yes # Print a single count of missing tracks in all albums. Default: no
+musicbrainz:
+  user: florib
+  pass: 
+permissions:
+  #file: 644
+  #dir: 755
+replaygain:
+  auto: yes # Enable ReplayGain analysis during import. Default: yes.
+  backend: gstreamer # The analysis backend; either gstreamer, command, or audiotools. Default: command.
+  overwrite: no # Re-analyze files that already have ReplayGain tags. Default: no.
+  targetlevel: 89 # A number of decibels for the target loudness level. Default: 89.
+  #r128: Opus # A space separated list of formats that will use R128_ tags with integer values instead of the common REPLAYGAIN_ tags with floating point values. Requires the “ffmpeg” backend. Default: Opus.
+scrub:
+  auto: yes # Enable metadata stripping during import. Default: yes.
+types: # The configuration section should map field name to one of int, float, bool, or date.
+  rating: int
+web:
+  #host: 127.0.0.1 # The server hostname. Set this to 0.0.0.0 to bind to all interfaces. Default: Bind to 127.0.0.1.
+  #port: 8337 # The server port. Default: 8337.
+  #cors: # The CORS allowed origin (see Cross-Origin Resource Sharing (CORS), below). Default: CORS is disabled.
+  #cors_supports_credentials: # Support credentials when using CORS (see Cross-Origin Resource Sharing (CORS), below). Default: CORS_SUPPORTS_CREDENTIALS is disabled.
+  #reverse_proxy: false # If true, enable reverse proxy support (see Reverse Proxy Support, below). Default: false.
+  #include_paths: false # If true, includes paths in item objects. Default: false.
+zero: # Remember to set only fields or keep_fields—not both!
+  #fields: comments
+  #keep_fields:
+    #- ROONRADIOBAN
+###################################################################################################
