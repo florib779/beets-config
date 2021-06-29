@@ -73,10 +73,15 @@ max_filename_length: 0  # 0 = unlimited.
 # Plugins #########################################################################################
 plugins:
   #- absubmit # The absubmit plugin lets you submit acoustic analysis results to the AcousticBrainz server.
+  #- artiscountry # Beets plugin to retrieve the country of an artist from Musicbrainz.
+  #- usertag
   #- chroma # Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
-  #- discgogs # The discogs plugin extends the autotagger’s search capabilities to include matches from the Discogs database.
+  #- check
+  #- copyartifacts # A plugin that moves non-music files during the import process.
+  #- discogs # The discogs plugin extends the autotagger’s search capabilities to include matches from the Discogs database.
   #- edit # The edit plugin lets you modify music metadata using your favorite text editor.
   - fetchart # The plugin uses requests to fetch album art from the Web.
+  #- follow # Get notifications about new releases from album artists in your Beets library using muspy.
   #- fromfilename # The fromfilename plugin helps to tag albums that are missing tags altogether but where the filenames contain useful information like the artist and title.
   #- ftintitle # The ftintitle plugin automatically moves “featured” artists from the artist field to the title field.
   #- importadded # The importadded plugin is useful when an existing collection is imported and the time when albums and items were added should be preserved.
@@ -93,6 +98,7 @@ plugins:
   #- scrub The scrub plugin lets you remove extraneous metadata from files’ tags.
   #- types # Lets you declare types for attributes you use in your library.
   - web # A very basic alternative interface to beets that supplements the CLI.
+  #- wlg # Fetches genres from various music sites.
   #- zero # The zero plugin allows you to null fields in files’ metadata tags. Fields can be nulled unconditionally or conditioned on a pattern match. For example, the plugin can strip useless comments like “ripped by MyGreatRipper.”
 
 ## Plugin configs
@@ -102,6 +108,9 @@ acoustid: # You can help expand the Acoustid database by submitting fingerprints
   apikey: YOUR-API-KEY # beet submit
 chroma:
   auto: no
+copyartifacts:
+  extensions: .* # Copy all non-music files (it does this by default).
+  print_ignored: yes
 fetchart:
   auto: yes # Enable automatic album art fetching during import. Default: yes.
   cautious: true # Pick only trusted album art by ignoring filenames that do not contain one of the keywords in "cover_names".
@@ -122,6 +131,10 @@ fetchart:
     #- itunes
     #- amazon
     - albumart
+follow:
+    email: <your email>
+    password: <your password>
+    userid: <your userid>
 ftintitle:
   auto: no
   drop: no
@@ -175,6 +188,12 @@ web:
   #cors_supports_credentials: # Support credentials when using CORS (see Cross-Origin Resource Sharing (CORS), below). Default: CORS_SUPPORTS_CREDENTIALS is disabled.
   #reverse_proxy: false # If true, enable reverse proxy support (see Reverse Proxy Support, below). Default: false.
   #include_paths: false # If true, includes paths in item objects. Default: false.
+wlg:
+    auto: no # Automatically fetch genres during import. Default: no
+    force: no # Force overwrite existing genres. Default: no
+    count: 4 # Number of genres to store. Default: 4
+    separator: ', ' # Separator for multiple genres. Default: ', '
+    whitelist: wlg # "wlg" use whitelist from whatlastgenre (default). "beets" use whitelist from lastgenre beets plugin
 zero: # Remember to set only fields or keep_fields—not both!
   #fields: comments
   #keep_fields:

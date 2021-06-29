@@ -1,3 +1,14 @@
+## Installation
+
+### Docker
+
+* https://hub.docker.com/r/linuxserver/beets
+* https://github.com/justifiably/docker-beets (inspiration)
+
+## Installed Plugins
+
+## Not installed Plugins, but already in config.yaml
+
 ## ToDo/Ideas
 
 ## Commands
