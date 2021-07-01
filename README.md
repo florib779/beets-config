@@ -5,15 +5,13 @@
 * https://hub.docker.com/r/linuxserver/beets
 * https://github.com/justifiably/docker-beets (inspiration)
 
-#### Systemd
+#### Start
 
-`nano /etc/systemd/system/beets-docker.service´
-
-`
+```
 docker run -d \
   --name=beets \
-  -e PUID=1000 \ # flori
-  -e PGID=1000 \ # flori
+  -e PUID=1000 \
+  -e PGID=1000 \
   -e TZ=Europe/Berlin \
   -p 8337:8337 \
   -v /home/flori/.config/beets:/config \
@@ -21,17 +19,27 @@ docker run -d \
   -v /home/flori/Downloads:/downloads \
   --restart unless-stopped \
   ghcr.io/linuxserver/beets
-`
+```
 
 `systemctl start beets-docker`
 
 `systemctl enable beets-docker`
 
-#### Commands
+#### Update
 
-##### Command prompt as user flori
+`docker pull linuxserver/beets:nightly-version-eadeead5`
 
-`docker exec -it -u flori beets bash`
+`docker stop beets`
+
+`docker rm beets`
+
+Start - see above.
+
+#### Docker commands
+
+##### Command prompt as user root
+
+~`docker exec -it -u root beets bash` # unable to find user flori: no matching entries in passwd file~
 
 ##### Shell access whilst the container is running
 
@@ -61,7 +69,9 @@ docker run -d \
 
 ## ToDo/Ideas
 
-## Commands
+- [ ] Hide credentials (secrets)
+
+## Beets commands
 
 Of course, the given commands assume that the music files are located in `~/beets-music/`, otherwise the path must be changed.
 

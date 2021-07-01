@@ -4,10 +4,10 @@ directory: ~/beets-music
 library: ~/beets-music/library.db
 
 import:
-  copy: no # Copy the files.
+  copy: no # Keep your current directory structure.
   move: no # Move the files.
   delete: no
-  write: no
+  write: no # Do not correct files’ tags.
   autotag: no # Always try to autotag.
   log: import.log # You can also use a path.
   #resume: ask
@@ -66,40 +66,41 @@ ui: # Use colors for the import command.
  
 max_filename_length: 0  # 0 = unlimited.
  
-#verbose: no
+verbose: no
  
 #statefile: state.pickle
 
 # Plugins #########################################################################################
-plugins:
-  #- absubmit # The absubmit plugin lets you submit acoustic analysis results to the AcousticBrainz server.
-  #- artiscountry # Beets plugin to retrieve the country of an artist from Musicbrainz.
-  #- usertag
-  #- chroma # Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
-  #- check
-  #- copyartifacts # A plugin that moves non-music files during the import process.
-  #- discogs # The discogs plugin extends the autotagger’s search capabilities to include matches from the Discogs database.
-  #- edit # The edit plugin lets you modify music metadata using your favorite text editor.
-  - fetchart # The plugin uses requests to fetch album art from the Web.
-  #- follow # Get notifications about new releases from album artists in your Beets library using muspy.
-  #- fromfilename # The fromfilename plugin helps to tag albums that are missing tags altogether but where the filenames contain useful information like the artist and title.
-  #- ftintitle # The ftintitle plugin automatically moves “featured” artists from the artist field to the title field.
-  #- importadded # The importadded plugin is useful when an existing collection is imported and the time when albums and items were added should be preserved.
-  #- info # The info plugin provides a command that dumps the current tag values for any file format supported by beets.
-  - lastimport
-  #- lastgenre # MusicBrainz actually doesn’t contain genre information
-  - lyrics
-  - mbcollection # The mbcollection plugin lets you submit your catalog to MusicBrainz to maintain your music collection list there.
-  #- mbsubmit # Provides an extra prompt choice during an import session that prints the tracks of the current album in a format that is parseable by MusicBrainz’s track parser.
-  #- mbsync # Lets you fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
-  #- missing # This plugin adds a new command, missing or miss, which finds and lists, for every album in your collection, which or how many tracks are missing.
-  #- permissions # The permissions plugin allows you to set file permissions for imported music files and its directories.
-  - replaygain
-  #- scrub The scrub plugin lets you remove extraneous metadata from files’ tags.
-  #- types # Lets you declare types for attributes you use in your library.
-  - web # A very basic alternative interface to beets that supplements the CLI.
-  #- wlg # Fetches genres from various music sites.
+plugins: [
+  #- absubmit, # The absubmit plugin lets you submit acoustic analysis results to the AcousticBrainz server.
+  #- artiscountry, # Beets plugin to retrieve the country of an artist from Musicbrainz.
+  #- usertag,
+  #- chroma, # Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
+  #- check,
+  #- copyartifacts, # A plugin that moves non-music files during the import process.
+  #- discogs, # The discogs plugin extends the autotagger’s search capabilities to include matches from the Discogs database.
+  #- edit, # The edit plugin lets you modify music metadata using your favorite text editor.
+  #- fetchart, # The plugin uses requests to fetch album art from the Web.
+  #- follow, # Get notifications about new releases from album artists in your Beets library using muspy.
+  #- fromfilename, # The fromfilename plugin helps to tag albums that are missing tags altogether but where the filenames contain useful information like the artist and title.
+  #- ftintitle, # The ftintitle plugin automatically moves “featured” artists from the artist field to the title field.
+  #- importadded, # The importadded plugin is useful when an existing collection is imported and the time when albums and items were added should be preserved.
+  #- info, # The info plugin provides a command that dumps the current tag values for any file format supported by beets.
+  #- lastimport,
+  #- lastgenre, # MusicBrainz actually doesn’t contain genre information
+  #- lyrics,
+  #- mbcollection, # The mbcollection plugin lets you submit your catalog to MusicBrainz to maintain your music collection list there.
+  #- mbsubmit, # Provides an extra prompt choice during an import session that prints the tracks of the current album in a format that is parseable by MusicBrainz’s track parser.
+  #- mbsync, # Lets you fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
+  #- missing, # This plugin adds a new command, missing or miss, which finds and lists, for every album in your collection, which or how many tracks are missing.
+  #- permissions, # The permissions plugin allows you to set file permissions for imported music files and its directories.
+  #- replaygain,
+  #- scrub, The scrub plugin lets you remove extraneous metadata from files’ tags.
+  #- types, # Lets you declare types for attributes you use in your library.
+  #- web, # A very basic alternative interface to beets that supplements the CLI.
+  #- wlg, # Fetches genres from various music sites.
   #- zero # The zero plugin allows you to null fields in files’ metadata tags. Fields can be nulled unconditionally or conditioned on a pattern match. For example, the plugin can strip useless comments like “ripped by MyGreatRipper.”
+]
 
 ## Plugin configs
 absubmit:
@@ -131,10 +132,10 @@ fetchart:
     #- itunes
     #- amazon
     - albumart
-follow:
-    email: <your email>
-    password: <your password>
-    userid: <your userid>
+follow: # Get notifications about new releases from album artists in your Beets library using muspy.
+    email: florib779@gmail.com
+    password: Bruder$p4ni$ch€Funkt1onH3ut!g3n
+    userid: hud72meo0k09auckew347vxbog4tw2
 ftintitle:
   auto: no
   drop: no
@@ -167,7 +168,7 @@ missing:
     total: yes # Print a single count of missing tracks in all albums. Default: no
 musicbrainz:
   user: florib
-  pass: 
+  pass: Sprech€rF€h1erLo5@ng€13s
 permissions:
   #file: 644
   #dir: 755
