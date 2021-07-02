@@ -12,17 +12,15 @@ Of course, the given commands assume that the music files are located in `~/beet
 
 ### Import and change tags
 
-`beet import ~/beets-music/`
-
-`beet -vv import ~/music -t`
+`beet import ~/Downloads/`
 
 ### Import but don't change any tags
 
-`beet import -A ~/beets-music/`
+`beet import -A ~/Downloads/`
 
 ### Add the single track without an album
 
-`beet import -s ~/beets-music/`
+`beet import -s ~/Downloads/`
 
 ### Fetch lyrics for the entiry library
 

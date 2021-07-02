@@ -2,8 +2,8 @@ directory: ~/beets-music
 library: ~/.config/beets/library.db
 
 import:
-  copy: no # Keep your current directory structure.
-  move: no # Move the files.
+  copy: yes # Keep your current directory structure.
+  move: yes # Move the files.
   delete: no
   write: yes
   link: no
@@ -19,8 +19,6 @@ import:
   #languages: en # Prefer transliterated English names.
   detail: yes # Show all info, not only changes.
 
-#art_filename: scans/cover # ToDo: create folder
-
 # replace '\', '/', non printables and pre- and postfixed spaces.
 #replace:
   #'[\\/]': -
@@ -28,7 +26,7 @@ import:
   #'\s+$': ''
   #'^\s+': ''
 
-#art_filename: cover # Cover art file name.
+#art_filename: cover # Cover art file name. ToDo: create folder
 
 ui: # Use colors for the import command.
   color: yes
@@ -41,62 +39,49 @@ ui: # Use colors for the import command.
     action_default: turquoise
     action: blue
 
-#Original_date: no # Don't use the original date for the release.
+Original_date: yes # Use the original date for the release.
 
 
-#Per_disc_numbering: no # The track numbers are incremented throughout a multi disk release.
+Per_disc_numbering: yes # The track numbers are incremented throughout a multi disk release.
 
-#match: # Auto tagger options.
-  #strong_rec_thresh: 0.001 # Only match 99.9% for auto import.
-  #medium_rec_thresh: 0.25
-  #rec_gap_thresh: 0.25
-  #max_rec:
-    #missing_tracks: low # Low recommendation for missing tracks.
-    #unmatched_tracks: low # Low recommendation for unmatched tracks.
-  #preferred:
-    #original_year: no # Don't prefer the year of release.
-  #ignored: missing_tracks unmatched_tracks
-  #required: year
-
-#paths: # Directory and naming scheme.
-  #default: $albumartist/$album%aunique{}/$track $title
-  #singleton: $artist/Non-Album/$title
-  #albumtype:soundtrack: Soundtracks/$album%aunique{}/$track $title
-  #comp: Compilations/$album%aunique{}/$track $title
+paths: # Directory and naming scheme.
+  default: $albumartist/$album%aunique{}/$track $title
+  singleton: $artist/Non-Album/$title
+  albumtype:soundtrack: Soundtracks/$album%aunique{}/$track $title
+  comp: Compilations/$album%aunique{}/$track $title
  
 max_filename_length: 0  # 0 = unlimited.
  
-verbose: no
- 
-#statefile: state.pickle
+verbose: yes
 
 # Plugins #########################################################################################
 plugins:
   [
-  #absubmit, # The absubmit plugin lets you submit acoustic analysis results to the AcousticBrainz server.
+  #absubmit, # The absubmit plugin lets you submit acoustic analysis results to the AcousticBrainz server. Install the extractor binary from https://acousticbrainz.org/download
   #artiscountry, # Beets plugin to retrieve the country of an artist from Musicbrainz.
   #bandcamp,
-  #chroma, # Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
+  chroma, # Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
   #check,
+  #convert
   #copyartifacts, # A plugin that moves non-music files during the import process.
   #discogs, # The discogs plugin extends the autotagger’s search capabilities to include matches from the Discogs database.
   #echonest_tempo,
   #edit, # The edit plugin lets you modify music metadata using your favorite text editor.
   fetchart, # The plugin uses requests to fetch album art from the Web.
   #follow, # Get notifications about new releases from album artists in your Beets library using muspy.
-  #fromfilename, # The fromfilename plugin helps to tag albums that are missing tags altogether but where the filenames contain useful information like the artist and title.
+  fromfilename, # The fromfilename plugin helps to tag albums that are missing tags altogether but where the filenames contain useful information like the artist and title.
   #ftintitle, # The ftintitle plugin automatically moves “featured” artists from the artist field to the title field.
-  #importadded, # The importadded plugin is useful when an existing collection is imported and the time when albums and items were added should be preserved.
+  importadded, # The importadded plugin is useful when an existing collection is imported and the time when albums and items were added should be preserved.
   #info, # The info plugin provides a command that dumps the current tag values for any file format supported by beets.
   lastimport, # Collect play counts from Last.fm.
-  #lastgenre, # MusicBrainz actually doesn’t contain genre information
+  lastgenre, # MusicBrainz actually doesn’t contain genre information
   lyrics,
-  #mbcollection, # The mbcollection plugin lets you submit your catalog to MusicBrainz to maintain your music collection list there.
-  #mbsubmit, # Provides an extra prompt choice during an import session that prints the tracks of the current album in a format that is parseable by MusicBrainz’s track parser.
-  #mbsync, # Lets you fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
+  mbcollection, # The mbcollection plugin lets you submit your catalog to MusicBrainz to maintain your music collection list there.
+  mbsubmit, # Provides an extra prompt choice during an import session that prints the tracks of the current album in a format that is parseable by MusicBrainz’s track parser.
+  mbsync, # Lets you fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
   #missing, # This plugin adds a new command, missing or miss, which finds and lists, for every album in your collection, which or how many tracks are missing.
   #permissions, # The permissions plugin allows you to set file permissions for imported music files and its directories.
-  #replaygain,
+  replaygain,
   #scrub, # The scrub plugin lets you remove extraneous metadata from files’ tags.
   #types, # Lets you declare types for attributes you use in your library.
   #usertag,
@@ -111,7 +96,14 @@ absubmit:
 acoustid: # You can help expand the Acoustid database by submitting fingerprints for the music in your collection.
   apikey: YOUR-API-KEY # beet submit
 chroma:
-  auto: no
+  auto: yes
+convert:
+    format: speex
+    formats:
+        speex:
+            command: ffmpeg -i $source -y -acodec speex $dest
+            extension: spx
+        wav: ffmpeg -i $source -y -acodec pcm_s16le $dest
 copyartifacts:
   extensions: .* # Copy all non-music files (it does this by default).
   print_ignored: yes
@@ -174,6 +166,10 @@ missing:
 musicbrainz:
   user: florib
   pass: Sprech€rF€h1erLo5@ng€13s
+  auto: yes # Automatically amend your MusicBrainz collection whenever you import a new album. Default: no.
+  collection: Beets # Which MusicBrainz collection to update. Default: None.
+  remove: yes # Remove albums from collections which are no longer present in the beets database. Default: None.
+
 permissions:
   #file: 644
   #dir: 755
