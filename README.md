@@ -9,8 +9,11 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
 * [acousticbrainz](https://beets.readthedocs.io/en/stable/plugins/acousticbrainz.html) (auto)
 * [badfiles](https://beets.readthedocs.io/en/stable/plugins/badfiles.html) (auto)
   * Command: `beet -c ~/.config/beets/secrets.yaml bad`
-* [bandcamp](https://github.com/unrblt/beets-bandcamp) (auto) @test
-  * Install: `pacman -S beets-bandcamp` (AUR)
+* [bandcamp](https://github.com/unrblt/beets-bandcamp) (auto)
+  * Install: `beets-bandcamp` (AUR)
+* [bucket](https://beets.readthedocs.io/en/stable/plugins/bucket.html)
+* [check](https://github.com/geigerzaehler/beets-check)
+  * Install: `beets-check` (AUR)
 * [chroma](https://beets.readthedocs.io/en/stable/plugins/chroma.html) (auto)
   * Install: `pacman -S python-pyacousticid` (seems to work without installing this library) @test
 * [discogs](https://beets.readthedocs.io/en/stable/plugins/discogs.html) (auto)
@@ -19,6 +22,8 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
   * Command: `beet duplicates`
 * [edit](https://beets.readthedocs.io/en/stable/plugins/edit.html)
   * Command: `beet -c ~/.config/beets/secrets.yaml edit QUERY`
+* [extrafiles](https://github.com/Holzhaus/beets-extrafiles)
+  * Install: `beets-extrafiles` (AUR)
 * [fetchart](https://beets.readthedocs.io/en/stable/plugins/fetchart.html) (auto)
 * [fromfilename](https://beets.readthedocs.io/en/stable/plugins/fromfilename.html) (auto)
 * [importadded](https://beets.readthedocs.io/en/stable/plugins/importadded.html)
@@ -27,12 +32,9 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
   * Command: `beet -c ~/.config/beets/secrets.yaml -c ~/.config/beets/secrets.yaml -v lastimport`
   * To keep up-to-date, you can run this plugin every once in a while (cron?).
 
-### Not installed, but already in config.yaml
+### Not installed/configured, but already in config.yaml
 
-* [bucket](https://beets.readthedocs.io/en/stable/plugins/bucket.html)
-* [check](https://github.com/geigerzaehler/beets-check)
 * [convert](https://beets.readthedocs.io/en/stable/plugins/convert.html)
-* [copyartifacts](https://github.com/sbarakat/beets-copyartifacts) (no longer maintained, but alternatives available)
 * [follow](https://github.com/nolsto/beets-follow)
   * Install `pacman -S beets-follow-git`
   * ToDo: Error message

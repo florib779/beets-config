@@ -54,13 +54,11 @@ ui:                          # Use colors for the import command.
 
 Original_date: yes           # Use the original date for the release.
 
-
 Per_disc_numbering: yes      # The track numbers are incremented throughout a multi disk release.
 
 paths:                       # Directory and naming scheme.
-  #default: /%bucket{$year}/%bucket{$albumartist}/$album%aunique{}/$track $title # ToDo
-  default: $albumartist/$album%aunique{}/$track $title
-  singleton: $artist/Non-Album/$title
+  default: %bucket{$artist,alpha}/$albumartist/$album%aunique{}/$track $title # Create folders with the first letters of the band names.
+  singleton: %bucket{$artist,alpha}/$artist/Non-Album/$title
   albumtype:soundtrack: Soundtracks/$album%aunique{}/$track $title
   comp: Compilations/$album%aunique{}/$track $title
  
@@ -77,16 +75,16 @@ plugins:
   bandcamp,                  # Use bandcamp as an autotagger source, for fetching lyrics and cover art.
                              # This plugin uses the bandcamp URL as id (for both albums and songs).
                              # If no matching release is found when importing you can select enter Id and paste the bandcamp URL.
-  #bucket,                   # Groups your files into buckets folders representing ranges.
+  bucket,                    # Groups your files into buckets folders representing ranges.
   chroma,                    # Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
                              # Turning on fingerprinting can increase the accuracy of the autotagger - especially on files with very poor metadata
-  #check,                    # verify the integrity of your audio files.
+  #check,                    # Automatically checksums your files to detect corruption.
                              # It computes and validates file checksums and uses third party tools to run custom tests on files.
   #convert                   # Convert parts of your collection to a directory of your choice, transcoding audio and embedding album art along the way.
-  #copyartifacts,            # Moves non-music files during the import process.
   discogs,                   # Extends the autotagger’s search capabilities to include matches from the Discogs database.
   duplicates,                # Adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
   edit,                      # Modify music metadata using your favorite text editor.
+  extrafiles,                # Copies additional files and directories during the import process.
   fetchart,                  # Fetch album art from the Web.
   #fetchartist,              # Fetches artist covers from last.fm and places them in the artist directories.
   #follow,                   # Get notifications about new releases from album artists in your Beets library using muspy.
@@ -163,8 +161,8 @@ bandcamp:
                              # Default is false.
 
 bucket:
-  #bucket_alpha: ['A-F', 'G-M', 'N-Z'] # ToDo
-  bucket_alpha: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] # ToDo
+  bucket_alpha_regex:
+    [A-Z]                    # Create folders with the first letters of the band names.
 chroma:
   auto: yes                  # Fingerprint-based autotagging
 convert:
@@ -194,9 +192,6 @@ convert:
                              # Default: false.
   threads: 1                 # The number of threads to use for parallel encoding.
                              # By default, the plugin will detect the number of processors available and use them all.
-copyartifacts:
-  extensions: .*             # Copy all non-music files (it does this by default).
-  print_ignored: yes
 #discogs:
   #source_weight: 0.5
   #user_token:
@@ -245,6 +240,15 @@ duplicates:
                              # By default, the tie-breaking procedure favors the most complete metadata attribute set.
                              # If you would like to consider the lower bitrates as duplicates, for example, set tiebreak: items: [bitrate].
                              # Default: {}.
+extrafiles:
+  patterns:
+    all: '*.*'
+    artworkdir:
+      - '[sS]cans/'
+      - '[aA]rtwork/'
+    paths:
+      all: $albumpath/scans
+      artworkdir: $albumpath/scans
 fetchart:
   auto: yes                  # Enable automatic album art fetching during import.
                              # Default: yes.
@@ -257,6 +261,7 @@ fetchart:
     - art
     - album
     - folder
+    - booklet
   enforce_ratio: yes         # Only allow images with 1:1 aspect ratio
   minwidth: 300              # Only images with a width bigger or equal to minwidth are considered as valid album art candidates.
                              # Default: 0.
@@ -355,6 +360,8 @@ musicbrainz:
   user:
   pass:
   searchlimit: 20            # Recommendation from: https://github.com/kernitus/beets-oldestdate
+  #extra_tags: [year, catalognum, country, media, label]
+  extra_tags: [website]
 oldestdate:
   auto: yes
   ignore_track_id: yes
