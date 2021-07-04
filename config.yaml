@@ -19,6 +19,18 @@ import:
   languages: en              # Prefer transliterated English names.
   detail: yes                # Show all info, not only changes.
 
+match:
+  #strong_rec_thresh: .1
+  preferred:
+    media: ['Digital Media|File', 'Digital Media', 'CD']
+    countries: ['DE', 'US', 'GB|UK']
+  #distance_weights:
+    #missing_tracks: 10
+    #unmatched_tracks: 10
+    # Try to force away from vinyl.
+    #media: 20.0
+    #mediums: 20.0
+
 # replace '\', '/', non printables and pre- and postfixed spaces.
 #replace:
   #'[\\/]': -
@@ -26,6 +38,7 @@ import:
   #'\s+$': ''
   #'^\s+': ''
 
+# Avoid conflicts with existing files like "cover.jpg" "front.jpg" etc.
 #art_filename: cover         # Cover art file name. ToDo: create folder
 
 ui:                          # Use colors for the import command.
@@ -45,6 +58,7 @@ Original_date: yes           # Use the original date for the release.
 Per_disc_numbering: yes      # The track numbers are incremented throughout a multi disk release.
 
 paths:                       # Directory and naming scheme.
+  #default: /%bucket{$year}/%bucket{$albumartist}/$album%aunique{}/$track $title # ToDo
   default: $albumartist/$album%aunique{}/$track $title
   singleton: $artist/Non-Album/$title
   albumtype:soundtrack: Soundtracks/$album%aunique{}/$track $title
@@ -74,6 +88,7 @@ plugins:
   duplicates,                # Adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
   edit,                      # Modify music metadata using your favorite text editor.
   fetchart,                  # Fetch album art from the Web.
+  #fetchartist,              # Fetches artist covers from last.fm and places them in the artist directories.
   #follow,                   # Get notifications about new releases from album artists in your Beets library using muspy.
   fromfilename,              # The fromfilename plugin helps to tag albums that are missing tags altogether
                              # but where the filenames contain useful information like the artist and title.
@@ -148,7 +163,8 @@ bandcamp:
                              # Default is false.
 
 bucket:
-  bucket_alpha: ['A-F', 'G-M', 'N-Z'] # ToDo
+  #bucket_alpha: ['A-F', 'G-M', 'N-Z'] # ToDo
+  bucket_alpha: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] # ToDo
 chroma:
   auto: yes                  # Fingerprint-based autotagging
 convert:
@@ -181,6 +197,9 @@ convert:
 copyartifacts:
   extensions: .*             # Copy all non-music files (it does this by default).
   print_ignored: yes
+#discogs:
+  #source_weight: 0.5
+  #user_token:
 duplicates:
   album: no                  # List duplicate albums instead of tracks.
                              # Default: no.
@@ -238,8 +257,8 @@ fetchart:
     - art
     - album
     - folder
-  enforce_ratio: no          # Default
-  minwidth: 0                # Only images with a width bigger or equal to minwidth are considered as valid album art candidates. 
+  enforce_ratio: yes         # Only allow images with 1:1 aspect ratio
+  minwidth: 300              # Only images with a width bigger or equal to minwidth are considered as valid album art candidates.
                              # Default: 0.
   maxwidth: 3000             # A maximum image width to downscale fetched images if they are too big.
                              # The height is recomputed so that the aspect ratio is preserved.
@@ -252,6 +271,12 @@ fetchart:
     #- itunes
     #- amazon
     - albumart
+  #google_engine:            # ID of the custom search engine to use
+  #google_key:               # API key to use for the search API
+  #fanarttv_key:             # API key to use for the fanart API
+  store_source: yes          # Store the art source (e.g. filesystem) in the beets database as art_source
+fetchartist:
+  filename: "artist"
 follow:                      # Get notifications about new releases from album artists in your Beets library using muspy.
   email:
   password:
@@ -304,6 +329,7 @@ lyrics:
                              # Default: google lyricwiki musixmatch genius, i.e., all the available sources.
                              # Both it and the genius source will only be enabled if BeautifulSoup is installed.
     - genius
+    - bandcamp               # Not shure if this entry is really nescessary.
     - lyricwiki
     - google                 # The google source will be automatically deactivated if no google_API_key is setup.
     - musixmatch             # Possibly just 30% of a whole song text
@@ -372,4 +398,5 @@ wlg:
   #]
   #keep_fields:
     #- ROONRADIOBAN
+  #update_database: true                                 # Update the beets db to reflect these changes
 ###################################################################################################

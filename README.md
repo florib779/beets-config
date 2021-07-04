@@ -8,7 +8,7 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
   * Install: `pacman -S acousticbrainz-client`
 * [acousticbrainz](https://beets.readthedocs.io/en/stable/plugins/acousticbrainz.html) (auto)
 * [badfiles](https://beets.readthedocs.io/en/stable/plugins/badfiles.html) (auto)
-  * Command: `beet bad`
+  * Command: `beet -c ~/.config/beets/secrets.yaml bad`
 * [bandcamp](https://github.com/unrblt/beets-bandcamp) (auto) @test
   * Install: `pacman -S beets-bandcamp` (AUR)
 * [chroma](https://beets.readthedocs.io/en/stable/plugins/chroma.html) (auto)
@@ -18,13 +18,13 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
 * [duplicates](https://beets.readthedocs.io/en/stable/plugins/duplicates.html)
   * Command: `beet duplicates`
 * [edit](https://beets.readthedocs.io/en/stable/plugins/edit.html)
-  * Command: `beet edit QUERY`
+  * Command: `beet -c ~/.config/beets/secrets.yaml edit QUERY`
 * [fetchart](https://beets.readthedocs.io/en/stable/plugins/fetchart.html) (auto)
 * [fromfilename](https://beets.readthedocs.io/en/stable/plugins/fromfilename.html) (auto)
 * [importadded](https://beets.readthedocs.io/en/stable/plugins/importadded.html)
 * [lastimport](https://beets.readthedocs.io/en/stable/plugins/lastimport.html)
   * Install: `pacman -S python-pylast`
-  * Command: `beet -c ~/.config/beets/secrets.yaml -v lastimport`
+  * Command: `beet -c ~/.config/beets/secrets.yaml -c ~/.config/beets/secrets.yaml -v lastimport`
   * To keep up-to-date, you can run this plugin every once in a while (cron?).
 
 ### Not installed, but already in config.yaml
@@ -34,13 +34,15 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
 * [convert](https://beets.readthedocs.io/en/stable/plugins/convert.html)
 * [copyartifacts](https://github.com/sbarakat/beets-copyartifacts) (no longer maintained, but alternatives available)
 * [follow](https://github.com/nolsto/beets-follow)
-  * Install `beets-follow-git`
+  * Install `pacman -S beets-follow-git`
   * ToDo: Error message
+* [fetchartist](https://github.com/dkanada/beets-fetchartist)
 * [ftintitle](https://beets.readthedocs.io/en/stable/plugins/ftintitle.html)
 * [oldestdate](https://github.com/kernitus/beets-oldestdate)
 ## ToDo/Ideas
 
-- [ ] Hide credentials in `config.yaml` (secrets)
+- [x] Hide credentials in `config.yaml` (secrets)
+  * Command: `beet -c ~/.config/beets/secrets.yaml ...`
 - [ ] Fetch Booklets
 - [ ] Fetch `website`
 - [ ] Fetch `barcode`
@@ -58,15 +60,17 @@ Of course, the given commands assume that the music files are located in `~/beet
 
 `beet -c ~/.config/beets/secrets.yaml import -s ~/Downloads/ # Add the single track without an album`
 
-`beet stats`
+`beet -c ~/.config/beets/secrets.yaml update`
 
-`beet ls # List all music of the library`
+`beet -c ~/.config/beets/secrets.yaml stats`
 
-`beet ls -a # List all albums of the library`
+`beet -c ~/.config/beets/secrets.yaml ls # List all music of the library`
 
-`beet rm <part of name> # Remove track(s) of the library`
+`beet -c ~/.config/beets/secrets.yaml ls -a # List all albums of the library`
 
-`beet rm -a <part of name> # Remove album(s) of the library`
+`beet -c ~/.config/beets/secrets.yaml rm <part of name> # Remove track(s) of the library`
+
+`beet -c ~/.config/beets/secrets.yaml rm -a <part of name> # Remove album(s) of the library`
 
 ## Tips
 
@@ -89,4 +93,9 @@ You will also need to install `bash-completion` for this to work.
 * [Beets @ hafenfragen.de (German)](https://www.hagenfragen.de/linux-tipps/software/mp3-musiksammlung-organisieren-mit-beets.html)
 * [Beets @ jundar.de (German)](https://jundar.de/beets-konfigurieren/)
 * [Beets Docker](https://blog.linuxserver.io/2016/10/08/managing-your-music-collection-with-beets/)
+
+### Configs
+
+* https://github.com/hashhar/picard-beets-config
 * https://github.com/kergoth/Beets-Library
+* https://github.com/RollingStar/dial-beets
