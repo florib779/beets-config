@@ -1,0 +1,14 @@
+# An * ensures that everything will be ignored.
+*
+
+# You can whitelist files/folders with !, these will not be ignored.
+!*.yaml
+!*.md
+!*.txt
+!.gitignore
+
+# Ignore these files/folders
+.ssh
+gitpush.sh
+secrets.yaml
+

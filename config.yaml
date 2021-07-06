@@ -6,6 +6,8 @@ pluginpath:
 import:
   copy: yes                  # Keep your current directory structure.
   move: yes                  # Move the files.
+                             # As long as you are editing with a test library, leave this entry at yes.
+                             # Comment it out later in the production environment or change it to no.
   delete: no
   write: yes
   link: no
@@ -20,29 +22,39 @@ import:
   default_action: apply      # Apply is the default action.
   languages: en              # Prefer transliterated English names.
   detail: yes                # Show all info, not only changes.
+  bell: yes                  # Ring the terminal bell to get your attention when the importer needs your input.
 
 match:
   #strong_rec_thresh: .1
   preferred:
     media: ['Digital Media|File', 'Digital Media', 'CD']
-    countries: ['DE', 'US', 'GB|UK']
-  #distance_weights:
-    #missing_tracks: 10
-    #unmatched_tracks: 10
-    # Try to force away from vinyl.
-    #media: 20.0
-    #mediums: 20.0
-
-ui:                          # Use colors for the import command.
-  color: yes
-  colors:
-    text_success: green
-    text_warning: yellow
-    text_error: red
-    text_highlight: red
-    text_highlight_minor: lightgray
-    action_default: turquoise
-    action: blue
+    countries: ['DE', 'XW', 'US', 'GB|UK']
+  strong_rec_thresh: 0.075   # Reflects the distance threshold below which beets will make a “strong recommendation” that the metadata be used.
+                             # Strong recommendations are accepted automatically (except in “timid” mode),
+                             # so you can use this to make beets ask your opinion more or less often.
+                             # The threshold is a distance value between 0.0 and 1.0, so you can think of it as the opposite of a similarity value.
+                             # For example, if you want to automatically accept any matches above 90% similarity, use: "strong_rec_thresh: 0.10"
+                             # The default strong recommendation threshold is 0.04.
+  # When a match is below the medium recommendation threshold or the distance between it and the next-best match is above the gap threshold,
+  # the importer will suggest that match but not automatically confirm it.
+  # Otherwise, you’ll see a list of options to choose from.
+  medium_rec_thresh: 0.125
+  #rec_gap_thresh: 
+  max_rec:
+    unmatched_tracks: low
+    missing_tracks: strong
+  # The higher the weight, the lower the items go in the candidate list (greater distance) when this penalty is applied.
+  distance_weights:
+    # Default: 3.0
+    album: 6.0
+    # Default: 3.0
+    artist: 7.0
+    # Default: 2.0
+    totaltracks: 4.0
+    # Default: 0.9
+    missing_tracks: 1.0
+    # Default: 0.6
+    unmatched_tracks: 10.0
 
 original_date: yes           # Use the original date for the release.
 
@@ -79,27 +91,32 @@ plugins:
   bandcamp,                  # Uses the bandcamp URL as id (for both albums and songs).
                              # If no matching release is found when importing you can select enter Id and paste the bandcamp URL.
   bucket,
-  chroma,                    # Turning on fingerprinting can increase the accuracy of the autotagger - especially on files with very poor metadata
+  chroma,                    # The Acoustid plugin extends the autotagger to use acoustic fingerprinting to find information for arbitrary audio.
+                             # Install that plugin if you’re willing to spend a little more CPU power to get tags for unidentified albums.
+                             # (But be aware that it does slow down the process.)
   check,                     # beets-check will add checksum automatically.
-  #convert
+  convert,
   discogs,
   duplicates,
-  edit,
+  edit,                      # Can also be invoked during an import session.
+                             # If enabled, it adds two new options to the user prompt.
   extrafiles,
   fetchart,
   fetchartist,               # ToDo: No results yet.
   follow,
-  fromfilename,
+  fromfilename,              # The FromFilename plugin adds the ability to guess tags from the filenames.
+                             # Use this plugin if your tracks have useful names (like “03 Call Me Maybe.mp3”) but their tags don’t reflect that.
   importadded,
   info,
-  #lastimport,               # Don't writes tags to files - only database. So not useful at the moment.
+  lastimport,                # Doesn't write tags to files - only database. So not useful at the moment.
   lastgenre,
   lyrics,
   mbcollection,
   mbsubmit,
   mbsync,
   missing,
-  #permissions,
+  #permissions,              # Set file permissions for imported music files and its directories.
+                             # Permissions will be adjusted automatically on import.
   #oldestdate,
   replaygain,
   #scrub,                    # If you’d prefer never to see crufty tags that come from other tools,
@@ -107,7 +124,6 @@ plugins:
                              # whenever a file’s metadata is written to disk by removing the tag entirely before writing new data.
   #usertag,
   web                        # Default port: 8337.
-  #wlg,                      # whatlastgenre
   #zero                      # Fields can be nulled unconditionally or conditioned on a pattern match.
                              # For example, the plugin can strip useless comments like “ripped by MyGreatRipper.”
   ]
@@ -143,7 +159,7 @@ acousticbrainz:
     voice_instrumental
     ]
 acoustid:                    # Help expand the Acoustid database by submitting fingerprints for the music in your collection.
-  apikey:                    # Command: beet submit
+  apikey: REDACTED           # Command: beet submit
 bandcamp:
   lyrics: true               # If this is true the plugin will add lyrics to the tracks if they are available.
                              # Default is false.
@@ -160,36 +176,29 @@ bucket:
     [A-Z]                    # Create folders with the first letters of the band names.
 chroma:
   auto: yes                  # Fingerprint-based autotagging
-convert:
-  dest: /mnt/                # The directory where the files will be converted (or copied) to. Default: none.
+convert:                     # By default, the command places converted files into the destination directory and leaves your library pristine.
   auto: no                   # Import transcoded versions of your files automatically during imports.
+  command: ffmpeg -i $source -sample_fmt s16 -ar 44100 $dest
+  extension: flac
+  source: ~/roon_export
+  dest: ~/beets_converted    # Test - change this later
+                             # The directory where the files will be converted (or copied) to. Default: none.
                              # With this option enabled, the importer will transcode all (in the default configuration) non-MP3 files
-                             # over the maximum bitrate before adding them to your library. Default: no.
+                             # over the maximum bitrate before adding them to your library.
   #tmpdir: none              # The directory where temporary files will be stored during import. Default: none (system default),
   copy_album_art: no         # Since the covers are embedded in the files when Roon exports them, this configuration is not necessary.
   embed: no                  # Embed album art in converted items. Default: yes.
   #id3v23: inherit           # Can be used to override the global id3v23 option. Default: inherit.
-  max_bitrate: 16            # All lossy files with a higher bitrate will be transcoded and those with a lower bitrate will simply be copied.
-                             # Note that this does not guarantee that all converted files will have a lower bitrate—that depends
-                             # on the encoder and its configuration.
-                             # Default: none.
-  #no_convert:               # Does not transcode items matching provided query string (see Queries).
-                             # (i.e. format:AAC, format:WMA or path::\.(m4a|wma)$)
   never_convert_lossy_files: yes
                              # Cross-conversions between lossy codecs—such as mp3, ogg vorbis, etc.
                              # Makes little sense as they will decrease quality even further.
                              # If set to yes, lossy files are always copied.
-                             # Default: no.
-  #paths:                    # The directory structure and naming scheme for the converted files.
-                             # Uses the same format as the top-level paths section (see Path Format Configuration).
-                             # Default: Reuse your top-level path format settings.
   quiet: false               # Prevent the plugin from announcing every file it processes.
                              # Default: false.
   threads: 1                 # The number of threads to use for parallel encoding.
                              # By default, the plugin will detect the number of processors available and use them all.
 #discogs:
   #source_weight: 0.5
-  #user_token:
 duplicates:
   album: no                  # List duplicate albums instead of tracks.
                              # Default: no.
@@ -270,48 +279,48 @@ fetchart:
     #- itunes
     #- amazon
     - albumart
-  #google_engine:            # ID of the custom search engine to use
-  #google_key:               # API key to use for the search API
-  #fanarttv_key:             # API key to use for the fanart API
-  store_source: yes          # Store the art source (e.g. filesystem) in the beets database as art_source
+  #google_engine:            # ID of the custom search engine to use.
+  #google_key:               # API key to use for the search API.
+  fanarttv_key: REDACTED     # API key to use for the fanart API.
+  store_source: yes          # Store the art source (e.g. filesystem) in the beets database as art_source.
 fetchartist:
-  #filename: "artist"        # It will default to empty and use the artist names.
+  filename: ''               # It will default to empty and use the artist names.
 follow:                      # Get notifications about new releases from album artists in your Beets library using muspy.
-  email:
-  password:
-  userid:
+  email: REDACTED
+  password: REDACTED
+  userid: REDACTED
   auto: yes
 # lastimport ######################################################################################
 lastimport:
   per_page: 500              # The number of tracks to request from the API at once. Default: 500.
   retry_limit: 3             # How many times should we re-send requests to Last.fm on failure? Default: 3.
 lastfm:
-  user:
-  api_key:
+  user: REDACTED
+  api_key: REDACTED
 types:
   play_count: int
   rating: float
 ###################################################################################################
 lastgenre:
-  auto: no                   # Fetch genres automatically during import. Default: yes.
-  #canonical: ~/.config/beets/genres-tree.yaml 
+  auto: yes                  # Fetch genres automatically during import. Default: yes.
+  canonical: ~/.config/beets/genres-tree.yaml 
                              # Use a canonicalization tree. Setting this to yes will use a built-in tree.
   count: 5                   # Number of genres to fetch. Default: 1
-  fallback: Pop/Rock         # A string if to use a fallback genre when no genre is found.
+  fallback: 'Pop/Rock'       # A string if to use a fallback genre when no genre is found.
                              # You can use the empty string '' to reset the genre.
                              # Default: None.
   force: no                  # By default, beets will always fetch new genres, even if the files already have one.
-                             # To instead leave genres in place in when they pass the #whitelist: ~/config/beets/genres.txt,
+                             # To instead leave genres in place in when they pass the #whitelist: ~/.config/beets/genres.txt,
                              # set the force option to no. 
-  #min_weight: 10            # Minimum popularity factor below which genres are discarded. Default: 10.
-  #prefer_specific: no       # Sort genres by the most to least specific, rather than most to least popular. Default: no.
-  #source: track             # Which entity to look up in Last.fm. Can be either artist, album or track. Default: album.
-  #whitelist: ~/.config/beets/whitelist.yaml
+  min_weight: 10             # Minimum popularity factor below which genres are discarded. Default: 10.
+  prefer_specific: no        # Sort genres by the most to least specific, rather than most to least popular. Default: no.
+  source: track              # Which entity to look up in Last.fm. Can be either artist, album or track. Default: album.
+  whitelist: ~/.config/beets/genres.txt
                              # The filename of a custom genre list, yes to use the internal whitelist, or no to consider all genres valid.
                              # Default: yes.
 lyrics:
   auto: yes                  # Fetch lyrics automatically during import. Default: yes.
-  #fallback: None            # By default, the file will be left unchanged when no lyrics are found.
+  fallback: None             # By default, the file will be left unchanged when no lyrics are found.
                              # Use the empty string '' to reset the lyrics in such a case.
                              # Default: None.
   force: no                  # By default, beets won’t fetch lyrics if the files already have ones.
@@ -344,11 +353,11 @@ missing:
                              # Default: no
 mbcollection:
   auto: yes                  # Automatically amend your MusicBrainz collection whenever you import a new album.
-  collection:                # Which MusicBrainz collection to update. Use the ID from the URL instead of the name.
+  collection: REDACTED       # Which MusicBrainz collection to update. Use the ID from the URL instead of the name.
   remove: yes                # Remove albums from collections which are no longer present in the beets database. ToDo: remove doesn't work.
 musicbrainz:
-  user:
-  pass:
+  user: REDACTED
+  pass: REDACTED
   searchlimit: 20            # Recommendation from: https://github.com/kernitus/beets-oldestdate
   extra_tags: [artists, barcode, isrc, musicbrainz_albumartistid, originalyear, website] # Get similar results as witch MusicBrainz Picard. ToDo: no function.
 oldestdate:
@@ -360,7 +369,7 @@ oldestdate:
   overwrite_year: yes
   filter_recordings: yes
   approach: 'releases'
-permissions:
+permissions: # octal modes
   #file: 644
   #dir: 755
 replaygain:
@@ -376,17 +385,6 @@ scrub:
   auto: yes                  # Enable metadata stripping during import. Default: yes.
 types:
   rating: int                # Should map field name to one of int, float, bool, or date.
-wlg:
-    auto: yes                # Automatically fetch genres during import.
-                             # Default: no
-    force: no                # Force overwrite existing genres.
-                             # Default: no
-    count: 4                 # Number of genres to store.
-                             # Default: 4
-    separator: ', '          # Separator for multiple genres.
-                             # Default: ', '
-    whitelist: wlg           # "wlg" use whitelist from whatlastgenre (default).
-                             # "beets" use whitelist from lastgenre beets plugin
 #zero:                       # Remember to set only fields or keep_fields—not both!
   #fields:
   #[
