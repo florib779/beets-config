@@ -1,0 +1,30 @@
+# lastimport ######################################################################################
+lastimport:
+  per_page: 500              # The number of tracks to request from the API at once. Default: 500.
+  retry_limit: 3             # How many times should we re-send requests to Last.fm on failure? Default: 3.
+lastfm:
+  user: REDACTED
+  api_key: REDACTED
+types:
+  play_count: int
+  rating: float
+###################################################################################################
+
+lastgenre:
+  auto: yes                  # Fetch genres automatically during import. Default: yes.
+  canonical: ~/.config/beets/genres/genres-tree.yaml 
+                             # Use a canonicalization tree. Setting this to yes will use a built-in tree.
+  whitelist: ~/.config/beets/genres/genres.txt
+                             # The filename of a custom genre list, yes to use the internal whitelist, or no to consider all genres valid.
+                             # Default: yes.
+  count: 5                   # Number of genres to fetch. Default: 1
+  fallback: 'Pop/Rock'       # A string if to use a fallback genre when no genre is found.
+                             # You can use the empty string '' to reset the genre.
+                             # Default: None.
+  separator: ', '
+  force: no                  # By default, beets will always fetch new genres, even if the files already have one.
+                             # To instead leave genres in place in when they pass the #whitelist: ~/.config/beets/genres.txt,
+                             # set the force option to no. 
+  min_weight: 10             # Minimum popularity factor below which genres are discarded. Default: 10.
+  prefer_specific: no        # Sort genres by the most to least specific, rather than most to least popular. Default: no.
+  source: track              # Which entity to look up in Last.fm. Can be either artist, album or track. Default: album. 

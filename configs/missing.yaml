@@ -1,0 +1,10 @@
+missing:
+    #format: $albumartist - $album - $title
+                             # A specific format with which to print every track.
+                             # This uses the same template syntax as beets’ path formats.
+                             # The usage is inspired by, and therefore similar to, the list command.
+                             # Default: format_item.
+    count: yes               # Print a count of missing tracks per album, with format defaulting to $albumartist - $album: $missing.
+                             # Default: no.
+    total: yes               # Print a single count of missing tracks in all albums.
+                             # Default: no 

@@ -1,0 +1,31 @@
+match:
+  #strong_rec_thresh: .1
+  preferred:
+    media: ['Digital Media|File', 'Digital Media', 'CD']
+    countries: ['DE', 'XW', 'US', 'GB|UK']
+  strong_rec_thresh: 0.075   # Reflects the distance threshold below which beets will make a “strong recommendation” that the metadata be used.
+                             # Strong recommendations are accepted automatically (except in “timid” mode),
+                             # so you can use this to make beets ask your opinion more or less often.
+                             # The threshold is a distance value between 0.0 and 1.0, so you can think of it as the opposite of a similarity value.
+                             # For example, if you want to automatically accept any matches above 90% similarity, use: "strong_rec_thresh: 0.10"
+                             # The default strong recommendation threshold is 0.04.
+  # When a match is below the medium recommendation threshold or the distance between it and the next-best match is above the gap threshold,
+  # the importer will suggest that match but not automatically confirm it.
+  # Otherwise, you’ll see a list of options to choose from.
+  medium_rec_thresh: 0.125
+  #rec_gap_thresh: 
+  max_rec:
+    unmatched_tracks: low
+    missing_tracks: strong
+  # The higher the weight, the lower the items go in the candidate list (greater distance) when this penalty is applied.
+  distance_weights:
+    # Default: 3.0
+    album: 6.0
+    # Default: 3.0
+    artist: 7.0
+    # Default: 2.0
+    totaltracks: 4.0
+    # Default: 0.9
+    missing_tracks: 1.0
+    # Default: 0.6
+    unmatched_tracks: 10.0 

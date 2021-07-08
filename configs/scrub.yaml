@@ -1,0 +1,2 @@
+scrub:
+  auto: yes                  # Enable metadata stripping during import. Default: yes. 

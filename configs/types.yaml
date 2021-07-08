@@ -1,0 +1,2 @@
+types:
+  rating: int                # Should map field name to one of int, float, bool, or date.S 

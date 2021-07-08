@@ -1,0 +1,23 @@
+lyrics:
+  auto: yes                  # Fetch lyrics automatically during import. Default: yes.
+  fallback: None             # By default, the file will be left unchanged when no lyrics are found.
+                             # Use the empty string '' to reset the lyrics in such a case.
+                             # Default: None.
+  force: no                  # By default, beets won’t fetch lyrics if the files already have ones.
+                             # To instead always fetch lyrics, set the force option to yes.
+                             # Default: no.
+  #google_API_key: None      # Your Google API key (to enable the Google Custom Search backend).
+                             # Default: None.
+  #google_engine_ID:         # The custom search engine to use.
+                             # Default: The beets custom search engine, which gathers an updated list of sources known to be scrapeable.
+  sources:                   # List of sources to search for lyrics.
+                             # An asterisk * expands to all available sources.
+                             # Default: google lyricwiki musixmatch genius, i.e., all the available sources.
+                             # Both it and the genius source will only be enabled if BeautifulSoup is installed.
+    - genius
+    - bandcamp               # Not shure if this entry is really nescessary.
+    - lyricwiki
+    - google                 # The google source will be automatically deactivated if no google_API_key is setup.
+    - musixmatch             # Possibly just 30% of a whole song text
+                             # Leave in last position or comment it out.
+                             # @test 

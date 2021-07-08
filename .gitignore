@@ -6,6 +6,8 @@
 !*.md
 !*.txt
 !.gitignore
+!configs
+!genres
 
 # Ignore these files/folders
 .ssh

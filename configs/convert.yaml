@@ -1,0 +1,21 @@
+convert:                     # By default, the command places converted files into the destination directory and leaves your library pristine.
+  auto: no                   # Import transcoded versions of your files automatically during imports.
+  command: ffmpeg -i $source -sample_fmt s16 -ar 44100 $dest
+  extension: flac
+  source: ~/roon_export
+  dest: ~/beets_converted    # Test - change this later
+                             # The directory where the files will be converted (or copied) to. Default: none.
+                             # With this option enabled, the importer will transcode all (in the default configuration) non-MP3 files
+                             # over the maximum bitrate before adding them to your library.
+  #tmpdir: none              # The directory where temporary files will be stored during import. Default: none (system default),
+  copy_album_art: no         # Since the covers are embedded in the files when Roon exports them, this configuration is not necessary.
+  embed: no                  # Embed album art in converted items. Default: yes.
+  #id3v23: inherit           # Can be used to override the global id3v23 option. Default: inherit.
+  never_convert_lossy_files: yes
+                             # Cross-conversions between lossy codecs—such as mp3, ogg vorbis, etc.
+                             # Makes little sense as they will decrease quality even further.
+                             # If set to yes, lossy files are always copied.
+  quiet: false               # Prevent the plugin from announcing every file it processes.
+                             # Default: false.
+  threads: 1                 # The number of threads to use for parallel encoding.
+                             # By default, the plugin will detect the number of processors available and use them all. 

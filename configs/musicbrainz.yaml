@@ -1,0 +1,10 @@
+musicbrainz:
+  user: REDACTED
+  pass: REDACTED
+  searchlimit: 20            # Recommendation from: https://github.com/kernitus/beets-oldestdate
+  extra_tags: [artists, barcode, isrc, musicbrainz_albumartistid, originalyear, website] # Get similar results as witch MusicBrainz Picard. ToDo: no function.
+
+mbcollection:
+  auto: yes                  # Automatically amend your MusicBrainz collection whenever you import a new album.
+  collection: REDACTED       # Which MusicBrainz collection to update. Use the ID from the URL instead of the name.
+  remove: yes                # Remove albums from collections which are no longer present in the beets database. ToDo: remove doesn't work.

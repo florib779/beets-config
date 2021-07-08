@@ -1,0 +1,3 @@
+permissions: # octal modes
+  #file: 644
+  #dir: 755 

@@ -1,0 +1,8 @@
+#zero:                       # Remember to set only fields or keep_fields—not both!
+  #fields:
+  #[
+  #comments
+  #]
+  #keep_fields:
+    #- ROONRADIOBAN
+  #update_database: true                                 # Update the beets db to reflect these changes 
