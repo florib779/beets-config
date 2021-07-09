@@ -2,6 +2,16 @@ art_filename: cover          # When importing album art, the name of the file (w
                              # This is a template string, so you can use any of the syntax available to Path Formats.
                              # ToDo: create folder
 
+extrafiles:
+  patterns:
+    all: '*.*'
+    artworkdir:
+      - '[sS]cans/'
+      - '[aA]rtwork/'
+    paths:
+      all: $albumpath/scans
+      artworkdir: $albumpath/scans
+
 # ToDo: No results yet.
 fetchartist:
   filename: ''               # It will default to empty and use the artist names. 

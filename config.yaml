@@ -4,29 +4,30 @@ library: ~/.config/beets/library.db
 pluginpath:                  # Directories to search for plugins. 
   - ~/.config/beets/plugins
 include: # A space-separated list of extra configuration files to include.
+  # Configuration files doesn't work if they are placed in sub folders.
   - secrets.yaml # Secret strings like usernames and passwords.
-  - plugins.yaml # Activate/deactivate plugins here
-  # Contextual based configuration files ##########################################################
+  - plugins.yaml # Activate/deactivate plugins here.
+  # Contextual based configuration files. #######
   # See "plugins.yaml" file for plugin descriptions.
-  - configs/acousticbrainz.yaml # All AcoustiBrainz related configurations.
-  - configs/bandcamp.yaml
-  - configs/convert.yaml
-  - configs/discogs.yaml
-  - configs/duplicates.yaml
-  - configs/lastfm.yaml # All Last.fm related configurations.
-  - configs/lyrics.yaml
-  - configs/match.yaml
-  - configs/missing.yaml
-  - configs/musicbrainz.yaml # All MusicBrainz related configurations.
-  - configs/muspy.yaml
-  - configs/oldestdate.yaml
-  - configs/pictures.yaml # Covers, artist images etc. Inludes plugin "extrafiles".
-  - configs/permissions.yaml
-  - configs/replace.yaml
-  - configs/scrub.yaml
-  - configs/types.yaml
-  - configs/zero.yaml
-###################################################################################################
+  - bandcamp.yaml
+  - convert.yaml
+  - discogs.yaml
+  - duplicates.yaml
+  - lastfm.yaml # All Last.fm related configurations.
+  - lyrics.yaml
+  - match.yaml
+  - missing.yaml
+  - muspy.yaml
+  - oldestdate.yaml
+  - paths.yaml # File and path related configurations.
+  - pictures.yaml # Covers, artist images etc. Inludes plugin "extrafiles".
+  - permissions.yaml
+  - replace.yaml
+  - replaygain.yaml
+  - scrub.yaml
+  - types.yaml
+  - zero.yaml
+#################################################
 
 #clutter: yes                # When beets imports all the files in a directory, it tries to remove the directory if it’s empty.
                              # A directory is considered empty if it only contains files whose names match the glob patterns in clutter,
@@ -34,72 +35,6 @@ include: # A space-separated list of extra configuration files to include.
                              # The importer only removes recursively searched subdirectories—the top-level directory you specify on the command line is never deleted.
 original_date: yes           # Use the original date for the release.
 per_disc_numbering: yes      # The track numbers are incremented throughout a multi disk release.
-
-
 verbose: yes
 threaded: yes                # Indicating whether the autotagger should use multiple threads.
                              # This makes things substantially faster by overlapping work
-
-# File and path related configurations ############################################################
-asciify_path: yes # Convert all non-ASCII characters in paths to ASCII equivalents.
-
-bucket:
-  bucket_alpha_regex:
-    [A-Z] # Create folders with the first letters of the band names.
-
-max_filename_length: 0       # 0 = unlimited.
-
-paths: # Directory and naming scheme.
-  default: %bucket{$artist,alpha}/$albumartist/$album%aunique{}/$track $title # Create folders with the first letters of the band names.
-  singleton: %bucket{$artist,alpha}/$artist/Non-Album/$title
-  albumtype:soundtrack: Soundtracks/$album%aunique{}/$track $title
-  comp: Compilations/$album%aunique{}/$track $title
-
-import: # Beets can move or copy files but it doesn’t make sense to do both).
-  #copy: yes                  # Keep your current directory structure.
-  move: yes                  # Move the files.
-                             # As long as you are editing with a test library, leave this entry at yes.
-                             # Comment it out later in the production environment or change it to no.
-  delete: no
-  write: yes
-  link: no
-  hardlink: no
-  autotag: yes               # Always try to autotag.
-  log: import.log            # You can also use a path.
-  #resume: ask
-  #incremental: no           # Don't record imported directories.
-  #quiet_fallback: skip      # Skip in quite mode when there is no strong recommendation.
-  none_rec_action: ask       # Ask when there is no recommendation.
-  timid: no                  # Ask for confirmation when the match is very close.
-  default_action: apply      # Apply is the default action.
-  languages: en              # Prefer transliterated English names.
-  detail: yes                # Show all info, not only changes.
-  bell: yes                  # Ring the terminal bell to get your attention when the importer needs your input.
-  set_fields:
-    ROONRADIOBAN: 'false'
-    ROONALBUMTAG: ''
-    ROONTRAGTAG: ''            # Eg. to add download source 
-###################################################################################################
-
-# This configuration has to reside, NOT in a separate file.
-# "error: replaygain initialization failed: no replaygain command found: install mp3gain or aacgain"
-replaygain:
-  auto: yes                  # Enable ReplayGain analysis during import. Default: yes.
-  backend: gstreamer         # The analysis backend; either gstreamer, command, or audiotools. Default: command.
-  overwrite: no              # Re-analyze files that already have ReplayGain tags. Default: no.
-  targetlevel: 89            # A number of decibels for the target loudness level. Default: 89.
-  #r128: Opus                # A space separated list of formats that will use R128_ tags with integer values
-                             # instead of the common REPLAYGAIN_ tags with floating point values.
-                             # Requires the “ffmpeg” backend.
-                             # Default: Opus.
-
-# This configuration has to reside, NOT in a separate file.
-extrafiles:
-  patterns:
-    all: '*.*'
-    artworkdir:
-      - '[sS]cans/'
-      - '[aA]rtwork/'
-    paths:
-      all: $albumpath/scans
-      artworkdir: $albumpath/scans
