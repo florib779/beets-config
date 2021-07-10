@@ -3,7 +3,7 @@ match:
   preferred:
     media: ['Digital Media|File', 'Digital Media', 'CD']
     countries: ['DE', 'XW', 'US', 'GB|UK']
-  strong_rec_thresh: 0.075   # Reflects the distance threshold below which beets will make a “strong recommendation” that the metadata be used.
+  strong_rec_thresh: 0.10    # Reflects the distance threshold below which beets will make a “strong recommendation” that the metadata be used.
                              # Strong recommendations are accepted automatically (except in “timid” mode),
                              # so you can use this to make beets ask your opinion more or less often.
                              # The threshold is a distance value between 0.0 and 1.0, so you can think of it as the opposite of a similarity value.

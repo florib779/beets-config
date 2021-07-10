@@ -3,7 +3,7 @@ directory: ~/beets-music # Destination
 library: ~/.config/beets/library.db
 pluginpath:                  # Directories to search for plugins. 
   - ~/.config/beets/plugins
-include: # A space-separated list of extra configuration files to include.
+include: # A list of extra configuration files to include.
   # Configuration files doesn't work if they are placed in sub folders.
   - secrets.yaml # Secret strings like usernames and passwords.
   - plugins.yaml # Activate/deactivate plugins here.
@@ -22,7 +22,6 @@ include: # A space-separated list of extra configuration files to include.
   - paths.yaml # File and path related configurations.
   - pictures.yaml # Covers, artist images etc. Inludes plugin "extrafiles".
   - permissions.yaml
-  - replace.yaml
   - replaygain.yaml
   - scrub.yaml
   - types.yaml
@@ -38,3 +37,42 @@ per_disc_numbering: yes      # The track numbers are incremented throughout a mu
 verbose: yes
 threaded: yes                # Indicating whether the autotagger should use multiple threads.
                              # This makes things substantially faster by overlapping work
+###################################################################################################
+
+import: # Beets can move or copy files but it doesn’t make sense to do both).
+  write: yes                 # Controlling whether metadata (e.g., ID3) tags are written to files when using beet import.
+  copy: yes                  # Keep your current directory structure.
+                             # The option is ignored if move is enabled (i.e., beets can move or copy files but it doesn’t make sense to do both).
+  #move: yes                 # Move the files.
+  resume: yes                #  Controls whether interrupted imports should be resumed.
+                             # “Yes” means that imports are always resumed when possible;
+                             # “no” means resuming is disabled entirely;
+                             # “ask” (the default) means that the user should be prompted when resuming is possible.
+  incremental: no            # Don't record imported directories.
+  incremental_skip_later: no # Controlling whether imported directories are recorded and whether these recorded directories are skipped.
+  from_scratch: no           # Controlling whether existing metadata is discarded when a match is applied.
+  quiet_fallback: skip       # Either skip (default) or asis, specifying what should happen in quiet mode when there is no strong recommendation.
+  none_rec_action: ask       # Either ask (default), asis or skip.
+                             # Specifies what should happen during an interactive import session when there is no recommendation.
+                             # Useful when you are only interested in processing medium and strong recommendations interactively.
+  timid: no                  # Controlling whether the importer runs in timid mode,
+                             # in which it asks for confirmation on every autotagging match, even the ones that seem very close.
+  log: import.log            # You can also use a path.
+  default_action: apply      # One of apply, skip, asis, or none, indicating which option should be the default when selecting an action for a given match.
+                             # This is the action that will be taken when you type return without an option letter.
+  languages: en de           # Prefer transliterated English names.
+  detail: no                 # Whether the importer UI should show detailed information about each match it finds.
+                             # When enabled, this mode prints out the title of every track, regardless of whether it matches the original metadata.
+                             # The default behavior only shows changes. Default: no.
+  group_albums: no             # By default, the beets importer groups tracks into albums based on the directories they reside in.
+                             # This option instead uses files’ metadata to partition albums.
+                             # Enable this option if you have directories that contain tracks from many albums mixed together.
+  autotag: yes               # If most of your collection consists of obscure music,
+                             # you may be interested in disabling autotagging by setting this option to no.
+  duplicate_action: ask      # Either skip, keep, remove, merge or ask. Controls how duplicates are treated in import task.
+                             # “skip” means that new item (album or track) will be skipped;
+                             # “keep” means keep both old and new items;
+                             # “remove” means remove old item;
+                             # “merge” means merge into one album;
+                             # “ask” means the user should be prompted for the action each time.
+  bell: yes                  # Ring the terminal bell to get your attention when the importer needs your input.

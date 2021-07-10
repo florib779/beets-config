@@ -94,6 +94,7 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
 - [ ] Fetch `artists` tag.
 - [ ] Automatically extract archives in Download directory.
 - [ ] Assign Qobuz comments to the appropriate tags.
+  * https://discourse.beets.io/t/comments-field-template-dev-questions/1354
 - [ ] Refine matches.
 - [x] Hide credentials in `config.yaml` (`secrets.yaml`).
 

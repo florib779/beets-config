@@ -12,27 +12,12 @@ paths: # Directory and naming scheme.
   albumtype:soundtrack: Soundtracks/$album%aunique{}/$track $title
   comp: Compilations/$album%aunique{}/$track $title
 
-import: # Beets can move or copy files but it doesn’t make sense to do both).
-  #copy: yes                  # Keep your current directory structure.
-  move: yes                  # Move the files.
-                             # As long as you are editing with a test library, leave this entry at yes.
-                             # Comment it out later in the production environment or change it to no.
-  delete: no
-  write: yes
-  link: no
-  hardlink: no
-  autotag: yes               # Always try to autotag.
-  log: import.log            # You can also use a path.
-  #resume: ask
-  #incremental: no           # Don't record imported directories.
-  #quiet_fallback: skip      # Skip in quite mode when there is no strong recommendation.
-  none_rec_action: ask       # Ask when there is no recommendation.
-  timid: no                  # Ask for confirmation when the match is very close.
-  default_action: apply      # Apply is the default action.
-  languages: en              # Prefer transliterated English names.
-  detail: yes                # Show all info, not only changes.
-  bell: yes                  # Ring the terminal bell to get your attention when the importer needs your input.
-  set_fields:
-    ROONRADIOBAN: 'false'
-    ROONALBUMTAG: ''
-    ROONTRAGTAG: ''            # Eg. to add download source 
+replace: # A set of regular expression/replacement pairs to be applied to all filenames created by beets.
+    '[\\/]': _
+    '^\.': _
+    '[\x00-\x1f]': _
+    '[<>:"\?\*\|]': _
+    '\.$': _
+    '\s+$': ''
+    '^\s+': ''
+    '^-': _ 

@@ -1,2 +1,2 @@
-#discogs:
-  #source_weight: 0.5 
+discogs:
+  source_weight: 0.5 # Set to 0.0 to disable.

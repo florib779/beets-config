@@ -1,2 +1,3 @@
+# Delete tags that beets does not support. It does this by removing the metadata for the file entirely and then rewriting the tags beets knows about. This can help get rid of crufty tags that beets has no reason to expose as a standard field.
 scrub:
   auto: yes                  # Enable metadata stripping during import. Default: yes. 
