@@ -4,7 +4,6 @@ library: ~/.config/beets/library.db
 pluginpath:
   #- ~/.config/beets/plugins # Does not work
   - ~/.config/beets/plugins/fetchartist
-  - ~/.config/beets/plugins/follow
 include: # A list of extra configuration files to include.
   # Configuration files doesn't work if they are placed in sub folders.
   - secrets.yaml # Secret strings like usernames and passwords.

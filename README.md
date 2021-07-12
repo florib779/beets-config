@@ -1,12 +1,20 @@
 This is a work, in a very early stage.
 
-I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a different installation method must be used for other distributions, or the names of the installation files may differ.
+## Installation
+
+`pip install https://github.com/beetbox/beets/tarball/master`
+
+## Run
+
+`~/.local/bin/beet import ~/beets-music/`
+
+ToDo: https://askubuntu.com/questions/625354/installed-script-with-pip-run-like-a-command
 
 ### Goals
 
 - [x] Submit acoustic analysis results to the AcousticBrainz server.
   * [absubmit](https://beets.readthedocs.io/en/stable/plugins/absubmit.html) (auto)
-    * Install: `pacman -S acousticbrainz-client`
+  * Install: `pip install requests`
 - [x] Get acoustic-analysis information from the AcousticBrainz project.
   * [acousticbrainz](https://beets.readthedocs.io/en/stable/plugins/acousticbrainz.html) (auto)
 - [x] Check for missing and corrupt files. 
@@ -14,21 +22,21 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
     * Command: `beet bad`
 - [x] Use bandcamp as an autotagger source, for fetching lyrics and cover art.
   * [bandcamp](https://github.com/unrblt/beets-bandcamp) (auto) @test
-    * Install: `beets-bandcamp` (AUR)
+    * Install: `pip install beets-bandcamp`
 - [x] Create folders with the first letters of the band names and assign them accordingly.
   * [bucket](https://beets.readthedocs.io/en/stable/plugins/bucket.html)
 - [ ] Automatically checksum files to detect corruption.
   * [check](https://github.com/geigerzaehler/beets-check) (auto) @test
-    * Install: `beets-check` (AUR)
+    * Install: `pip install beets-check`
 - [x] Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
   * [chroma](https://beets.readthedocs.io/en/stable/plugins/chroma.html) (auto)
-    * Install: `pacman -S python-pyacousticid` # Seems to work without installing this library. @test
+    * Install: `pip install pyacoustid`
 - [x] Transcode Roon exports to redbook flac files for mobile devices.
   * [convert](https://beets.readthedocs.io/en/stable/plugins/convert.html)
     * Command: `beet convert`
 - [x] Extend the autotagger’s search capabilities to include matches from the Discogs database.
   * [discogs](https://beets.readthedocs.io/en/stable/plugins/discogs.html) (auto)
-    * Install: `pacman -S python-discogs-client`
+    * Install: `pip install discogs-client`
 - [ ] Find and list duplicate tracks or albums in the collection.
   * [duplicates](https://beets.readthedocs.io/en/stable/plugins/duplicates.html)
     * Command: `beet duplicates`
@@ -37,18 +45,18 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
     * Command: `beet edit QUERY` # In case you need to edit the album-level fields, the recommended approach is to invoke the plugin via the command line in album mode after the import.
 - [ ] Copy additional files (like covers, booklets) and directories during the import process. @test
   * [extrafiles](https://github.com/Holzhaus/beets-extrafiles)
-    * Install: `beets-extrafiles` (AUR)
+    * Install: `pip install beets-extrafiles`
 - [x] Fetch album art from different web sources.
   * [fetchart](https://beets.readthedocs.io/en/stable/plugins/fetchart.html) (auto)
   * Booklets do not seem to be possible at the moment.
 - [ ] Fetch artist covers and place them in the artist directories.
   * [fetchartist](https://github.com/dkanada/beets-fetchartist) (manually)
-    * Install: `pacman -S python-pylast python-requests`
+    * Install: `pip install pylast requests`
     * Command: beet fetchartist --help
     - [ ] `path not found`
 - [x] Get notifications about new releases from album artists in your Beets library using muspy.
   * [follow](https://github.com/nolsto/beets-follow) (auto) @test
-    * Install: https://github.com/Nagasaki45/beets-follow
+    * Install: `pip install beets-follow`
   - [ ] `HTTP Error 404: NOT FOUND`
 - [x] Tag albums that are missing tags altogether.
   * [fromfilename](https://beets.readthedocs.io/en/stable/plugins/fromfilename.html) (auto)
@@ -58,7 +66,7 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
   * [info](https://beets.readthedocs.io/en/stable/plugins/info.html)
 - [ ] Collect play counts from Last.fm. Doesn't make any sense for the use with Roon yet.
   * [lastimport](https://beets.readthedocs.io/en/stable/plugins/lastimport.html) (manually)
-    * Install: `pacman -S python-pylast`
+    * Install: `pip install pylast`
     * Command: `beet -v lastimport`
     * To keep up-to-date, you can run this plugin every once in a while (cron?).
 - [x] Fetch genres from Last.fm. MusicBrainz actually doesn’t contain genre information and set a fallback genre if none is available.

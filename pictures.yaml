@@ -28,7 +28,7 @@ fetchart:
                              # Default: 0.
   maxwidth: 3000             # A maximum image width to downscale fetched images if they are too big.
                              # The height is recomputed so that the aspect ratio is preserved.
-  #high_resolution: true     # v1.5. Files can have up to 20MB
+  high_resolution: true      # Files can have up to 20MB
   sources:                   # An asterisk * expands to all available sources.
                              # Default: filesystem coverart itunes amazon albumart.
     - filesystem
