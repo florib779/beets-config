@@ -9,6 +9,7 @@
 !genres
 
 # Ignore these files/folders
+_drafts
 .ssh
 gitpush.sh
 secrets.yaml

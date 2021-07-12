@@ -1,8 +1,10 @@
 # Global Options ##################################################################################
 directory: ~/beets-music # Destination
 library: ~/.config/beets/library.db
-pluginpath:                  # Directories to search for plugins. 
-  - ~/.config/beets/plugins
+pluginpath:
+  #- ~/.config/beets/plugins # Does not work
+  - ~/.config/beets/plugins/fetchartist
+  - ~/.config/beets/plugins/follow
 include: # A list of extra configuration files to include.
   # Configuration files doesn't work if they are placed in sub folders.
   - secrets.yaml # Secret strings like usernames and passwords.
@@ -28,10 +30,14 @@ include: # A list of extra configuration files to include.
   - zero.yaml
 #################################################
 
-#clutter: yes                # When beets imports all the files in a directory, it tries to remove the directory if it’s empty.
+clutter:                     # When beets imports all the files in a directory, it tries to remove the directory if it’s empty.
                              # A directory is considered empty if it only contains files whose names match the glob patterns in clutter,
-                             # which should be a list of strings. The default list consists of “Thumbs.DB” and “.DS_Store”.
+                             # which should be a list of strings.
                              # The importer only removes recursively searched subdirectories—the top-level directory you specify on the command line is never deleted.
+  [
+  .DS_Store, # Default
+  Thumbs.DB # Default
+  ]
 original_date: yes           # Use the original date for the release.
 per_disc_numbering: yes      # The track numbers are incremented throughout a multi disk release.
 verbose: yes
@@ -41,9 +47,9 @@ threaded: yes                # Indicating whether the autotagger should use mult
 
 import: # Beets can move or copy files but it doesn’t make sense to do both).
   write: yes                 # Controlling whether metadata (e.g., ID3) tags are written to files when using beet import.
-  copy: yes                  # Keep your current directory structure.
+  #copy: yes                 # Keep your current directory structure.
                              # The option is ignored if move is enabled (i.e., beets can move or copy files but it doesn’t make sense to do both).
-  #move: yes                 # Move the files.
+  move: yes                  # Move the files. Otherwise there will be duplicates.
   resume: yes                #  Controls whether interrupted imports should be resumed.
                              # “Yes” means that imports are always resumed when possible;
                              # “no” means resuming is disabled entirely;

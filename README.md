@@ -42,12 +42,14 @@ I have a [Manjaro Linux](https://manjaro.org/) based installation therefore, a d
   * [fetchart](https://beets.readthedocs.io/en/stable/plugins/fetchart.html) (auto)
   * Booklets do not seem to be possible at the moment.
 - [ ] Fetch artist covers and place them in the artist directories.
-  * [fetchartist](https://github.com/dkanada/beets-fetchartist)
-    * Install: `pacman -S python-pylast`
-    - [ ] No result yet
+  * [fetchartist](https://github.com/dkanada/beets-fetchartist) (manually)
+    * Install: `pacman -S python-pylast python-requests`
+    * Command: beet fetchartist --help
+    - [ ] `path not found`
 - [x] Get notifications about new releases from album artists in your Beets library using muspy.
   * [follow](https://github.com/nolsto/beets-follow) (auto) @test
-    * Install: `pacman -S beets-follow-git`
+    * Install: https://github.com/Nagasaki45/beets-follow
+  - [ ] `HTTP Error 404: NOT FOUND`
 - [x] Tag albums that are missing tags altogether.
   * [fromfilename](https://beets.readthedocs.io/en/stable/plugins/fromfilename.html) (auto)
 - [ ] Preserve the import date.

@@ -12,6 +12,7 @@ plugins:
   chroma,          # Chromaprint/Acoustid Plugin.
   check,           # beets-check will add checksum automatically.
   convert,         # The convert plugin lets you transcoding audio and embedding album art.
+  deezer,          # The deezer plugin provides metadata matches for the importer using the Deezer Album and Track APIs.
   discogs,         # The discogs plugin extends the autotagger’s search capabilities to include matches from the Discogs database.
   duplicates,      # This plugin adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
   edit,            # The edit plugin lets you modify music metadata using your favorite text editor. ToDo: No config file yet.

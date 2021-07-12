@@ -13,11 +13,11 @@ paths: # Directory and naming scheme.
   comp: Compilations/$album%aunique{}/$track $title
 
 replace: # A set of regular expression/replacement pairs to be applied to all filenames created by beets.
-    '[\\/]': _
-    '^\.': _
-    '[\x00-\x1f]': _
+    '[\\/]': _ # Remove back and forward slashes
+    '^\.': _ # Remove a single leading dot
+    '[\x00-\x1f]': _ # Remove first 32 control characters
     '[<>:"\?\*\|]': _
-    '\.$': _
-    '\s+$': ''
-    '^\s+': ''
+    '\.$': _ # Remove a single trailing dot
+    '\s+$': '' # Remove a trailing white-space
+    '^\s+': '' # Remove a leading white-space
     '^-': _ 
