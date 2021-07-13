@@ -4,98 +4,104 @@ This is a work, in a very early stage.
 
 `pip install https://github.com/beetbox/beets/tarball/master`
 
-## Run
+### Create a symlink
 
-`~/.local/bin/beet import ~/beets-music/`
-
-ToDo: https://askubuntu.com/questions/625354/installed-script-with-pip-run-like-a-command
+`sudo ln -s ~/.local/bin /usr/local/bin`
 
 ### Goals
 
 - [x] Submit acoustic analysis results to the AcousticBrainz server.
-  * [absubmit](https://beets.readthedocs.io/en/stable/plugins/absubmit.html) (auto)
+  * [absubmit](https://beets.readthedocs.io/en/latest/plugins/absubmit.html) (auto)
   * Install: `pip install requests`
 - [x] Get acoustic-analysis information from the AcousticBrainz project.
-  * [acousticbrainz](https://beets.readthedocs.io/en/stable/plugins/acousticbrainz.html) (auto)
+  * [acousticbrainz](https://beets.readthedocs.io/en/latest/plugins/acousticbrainz.html) (auto)
 - [x] Check for missing and corrupt files. 
-  * [badfiles](https://beets.readthedocs.io/en/stable/plugins/badfiles.html) (manually)
+  * [badfiles](https://beets.readthedocs.io/en/latest/plugins/badfiles.html) (manually)
     * Command: `beet bad`
 - [x] Use bandcamp as an autotagger source, for fetching lyrics and cover art.
   * [bandcamp](https://github.com/unrblt/beets-bandcamp) (auto) @test
     * Install: `pip install beets-bandcamp`
 - [x] Create folders with the first letters of the band names and assign them accordingly.
-  * [bucket](https://beets.readthedocs.io/en/stable/plugins/bucket.html)
+  * [bucket](https://beets.readthedocs.io/en/latest/plugins/bucket.html)
 - [ ] Automatically checksum files to detect corruption.
   * [check](https://github.com/geigerzaehler/beets-check) (auto) @test
     * Install: `pip install beets-check`
 - [x] Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
-  * [chroma](https://beets.readthedocs.io/en/stable/plugins/chroma.html) (auto)
+  * [chroma](https://beets.readthedocs.io/en/latest/plugins/chroma.html) (auto)
     * Install: `pip install pyacoustid`
 - [x] Transcode Roon exports to redbook flac files for mobile devices.
-  * [convert](https://beets.readthedocs.io/en/stable/plugins/convert.html)
+  * [convert](https://beets.readthedocs.io/en/latest/plugins/convert.html)
     * Command: `beet convert`
 - [x] Extend the autotagger’s search capabilities to include matches from the Discogs database.
-  * [discogs](https://beets.readthedocs.io/en/stable/plugins/discogs.html) (auto)
+  * [discogs](https://beets.readthedocs.io/en/latest/plugins/discogs.html) (auto)
     * Install: `pip install discogs-client`
 - [ ] Find and list duplicate tracks or albums in the collection.
-  * [duplicates](https://beets.readthedocs.io/en/stable/plugins/duplicates.html)
+  * [duplicates](https://beets.readthedocs.io/en/latest/plugins/duplicates.html)
     * Command: `beet duplicates`
 - [ ] Modify music metadata using your favorite text editor.
-  * [edit](https://beets.readthedocs.io/en/stable/plugins/edit.html)
+  * [edit](https://beets.readthedocs.io/en/latest/plugins/edit.html)
     * Command: `beet edit QUERY` # In case you need to edit the album-level fields, the recommended approach is to invoke the plugin via the command line in album mode after the import.
 - [ ] Copy additional files (like covers, booklets) and directories during the import process. @test
   * [extrafiles](https://github.com/Holzhaus/beets-extrafiles)
     * Install: `pip install beets-extrafiles`
 - [x] Fetch album art from different web sources.
-  * [fetchart](https://beets.readthedocs.io/en/stable/plugins/fetchart.html) (auto)
-  * Booklets do not seem to be possible at the moment.
+  * [fetchart](https://beets.readthedocs.io/en/latest/plugins/fetchart.html) (auto)
+    * Install: `pip install requests`
+    * Booklets do not seem to be possible at the moment.
 - [ ] Fetch artist covers and place them in the artist directories.
   * [fetchartist](https://github.com/dkanada/beets-fetchartist) (manually)
-    * Install: `pip install pylast requests`
+    * Install:
+      * `pip install requests`
+      * Copy to pluginpath
     * Command: beet fetchartist --help
     - [ ] `path not found`
 - [x] Get notifications about new releases from album artists in your Beets library using muspy.
   * [follow](https://github.com/nolsto/beets-follow) (auto) @test
     * Install: `pip install beets-follow`
-  - [ ] `HTTP Error 404: NOT FOUND`
+  - [ ] `Unable to follow ... HTTP Error 404: NOT FOUND`
 - [x] Tag albums that are missing tags altogether.
-  * [fromfilename](https://beets.readthedocs.io/en/stable/plugins/fromfilename.html) (auto)
+  * [fromfilename](https://beets.readthedocs.io/en/latest/plugins/fromfilename.html) (auto)
 - [ ] Preserve the import date.
-  * [importadded](https://beets.readthedocs.io/en/stable/plugins/importadded.html)
+  * [importadded](https://beets.readthedocs.io/en/latest/plugins/importadded.html)
 - [ ] Dump the current tag values for any file format supported by beets.
-  * [info](https://beets.readthedocs.io/en/stable/plugins/info.html)
+  * [info](https://beets.readthedocs.io/en/latest/plugins/info.html) (manually)
 - [ ] Collect play counts from Last.fm. Doesn't make any sense for the use with Roon yet.
-  * [lastimport](https://beets.readthedocs.io/en/stable/plugins/lastimport.html) (manually)
+  * [lastimport](https://beets.readthedocs.io/en/latest/plugins/lastimport.html) (manually)
     * Install: `pip install pylast`
     * Command: `beet -v lastimport`
     * To keep up-to-date, you can run this plugin every once in a while (cron?).
 - [x] Fetch genres from Last.fm. MusicBrainz actually doesn’t contain genre information and set a fallback genre if none is available.
-  * [lastgenre](https://beets.readthedocs.io/en/stable/plugins/lastgenre.html)
+  * [lastgenre](https://beets.readthedocs.io/en/latest/plugins/lastgenre.html)
+    * Install: `pip install pylast`
 - [x] Fetch lyrics from various sources.
-  * [lyrics](https://beets.readthedocs.io/en/stable/plugins/lyrics.html)
+  * [lyrics](https://beets.readthedocs.io/en/latest/plugins/lyrics.html)
+    * Install: `pip install requests`
 - [x] Submit the catalog to MusicBrainz to maintain the music collection list there. (auto)
-  * [mbcollection](https://beets.readthedocs.io/en/stable/plugins/mbcollection.html)
-  - [ ] `remove` doesn't work.
+  * [mbcollection](https://beets.readthedocs.io/en/latest/plugins/mbcollection.html)
+  - [ ] Remove (manually): `beet mbupdate -r`
 - [x] Fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
-  * [mbsync](https://beets.readthedocs.io/en/stable/plugins/mbsync.html)
+  * [mbsync](https://beets.readthedocs.io/en/latest/plugins/mbsync.html)
 - [ ] Find and list, which or how many tracks are missing, for every album in the collection.
-  * [missing](https://beets.readthedocs.io/en/stable/plugins/missing.html)
+  * [missing](https://beets.readthedocs.io/en/latest/plugins/missing.html)
 - [ ] Set file permissions for imported music files and its directories.
-  * [permissions](https://beets.readthedocs.io/en/stable/plugins/permissions.html) (auto)
+  * [permissions](https://beets.readthedocs.io/en/latest/plugins/permissions.html) (auto)
 - [ ] Fetch oldest recording or release date for each track.
   * [oldestdate](https://github.com/kernitus/beets-oldestdate)
+    * Copy to pluginpath
 - [x] Add ReplayGain tags for mobile devices.
-  * [replaygain](https://beets.readthedocs.io/en/stable/plugins/replaygain.html)
+  * [replaygain](https://beets.readthedocs.io/en/latest/plugins/replaygain.html)
 - [ ] Remove extraneous metadata from files’ tags.
-  * [scrub](https://beets.readthedocs.io/en/stable/plugins/scrub.html)
+  * [scrub](https://beets.readthedocs.io/en/latest/plugins/scrub.html)
 - [ ] Add own tags, like `ROONALBUMTAG`, `ROONTRACKTAG` ...
   - [ ] Write track genres to `ROONTRAGTAG`
   - [ ] Automatically add `ROONRADIOBAN`, value `false`, if the tag doesn't exist.
   * [usertag](https://github.com/igordertigor/beets-usertag)
+    * Install: `pip install git+git://github.com/igordertigor/beets-usertag.git`
 - [x] Web interface.
-  * [web](https://beets.readthedocs.io/en/stable/plugins/web.html)
+  * [web](https://beets.readthedocs.io/en/latest/plugins/web.html)
+    * Install: `pip install flask`
 - [ ] Null fields in files’ metadata tags.
-  * [zero](https://beets.readthedocs.io/en/stable/plugins/zero.html)
+  * [zero](https://beets.readthedocs.io/en/latest/plugins/zero.html)
 - [ ] Fetch Booklets.
 - [ ] Fetch `website` tag.
 - [ ] Fetch `barcode` tag.
