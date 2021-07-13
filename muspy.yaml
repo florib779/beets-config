@@ -1,5 +1,0 @@
-follow:                      # Get notifications about new releases from album artists in your Beets library using muspy.
-  email: REDACTED
-  password: REDACTED
-  userid: REDACTED
-  auto: yes 

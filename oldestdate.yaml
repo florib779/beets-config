@@ -1,9 +1,0 @@
-oldestdate:
-  auto: yes
-  ignore_track_id: yes
-  filter_on_import: yes
-  prompt_missing_work_id: yes
-  force: yes
-  overwrite_year: yes
-  filter_recordings: yes
-  approach: 'releases' 

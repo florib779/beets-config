@@ -8,7 +8,11 @@ This is a work, in a very early stage.
 
 `sudo ln -s ~/.local/bin /usr/local/bin`
 
-### Goals
+### Update
+
+`pip install -U https://github.com/beetbox/beets/tarball/master`
+
+## Goals
 
 - [x] Submit acoustic analysis results to the AcousticBrainz server.
   * [absubmit](https://beets.readthedocs.io/en/latest/plugins/absubmit.html) (auto)
@@ -47,7 +51,7 @@ This is a work, in a very early stage.
 - [x] Fetch album art from different web sources.
   * [fetchart](https://beets.readthedocs.io/en/latest/plugins/fetchart.html) (auto)
     * Install: `pip install requests`
-    * Booklets do not seem to be possible at the moment.
+    - [ ] Fetch booklets - do not seem to be possible at the moment.
 - [ ] Fetch artist covers and place them in the artist directories.
   * [fetchartist](https://github.com/dkanada/beets-fetchartist) (manually)
     * Install:
@@ -58,7 +62,6 @@ This is a work, in a very early stage.
 - [x] Get notifications about new releases from album artists in your Beets library using muspy.
   * [follow](https://github.com/nolsto/beets-follow) (auto) @test
     * Install: `pip install beets-follow`
-  - [ ] `Unable to follow ... HTTP Error 404: NOT FOUND`
 - [x] Tag albums that are missing tags altogether.
   * [fromfilename](https://beets.readthedocs.io/en/latest/plugins/fromfilename.html) (auto)
 - [ ] Preserve the import date.
@@ -97,19 +100,22 @@ This is a work, in a very early stage.
   - [ ] Automatically add `ROONRADIOBAN`, value `false`, if the tag doesn't exist.
   * [usertag](https://github.com/igordertigor/beets-usertag)
     * Install: `pip install git+git://github.com/igordertigor/beets-usertag.git`
+- [x] List all files in the library folder which are not listed in the beets library database.
+  * [unimported](https://beets.readthedocs.io/en/latest/plugins/unimported.html)
 - [x] Web interface.
   * [web](https://beets.readthedocs.io/en/latest/plugins/web.html)
     * Install: `pip install flask`
 - [ ] Null fields in files’ metadata tags.
   * [zero](https://beets.readthedocs.io/en/latest/plugins/zero.html)
-- [ ] Fetch Booklets.
 - [ ] Fetch `website` tag.
 - [ ] Fetch `barcode` tag.
 - [ ] Fetch `isrc` tag.
 - [ ] Fetch `origninalyear` tag.
 - [ ] Fetch `artists` tag.
-- [ ] Automatically extract archives in Download directory.
-- [ ] Assign Qobuz comments to the appropriate tags.
+- [x] Automatically extract compressed archives in Download directory.
+  * Only seem to work for single files, for example: `beet import ~/beets-music/Album.zip`
+  * Doesn't work with whitespaces in file names.
+- [ ] Assign Qobuz comment/description to the appropriate tags.
   * https://discourse.beets.io/t/comments-field-template-dev-questions/1354
 - [ ] Refine matches.
 - [x] Hide credentials in `config.yaml` (`secrets.yaml`).

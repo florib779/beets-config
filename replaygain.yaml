@@ -1,9 +1,0 @@
-replaygain:
-  auto: yes                  # Enable ReplayGain analysis during import. Default: yes.
-  backend: gstreamer         # The analysis backend; either gstreamer, command, or audiotools. Default: command.
-  overwrite: no              # Re-analyze files that already have ReplayGain tags. Default: no.
-  targetlevel: 89            # A number of decibels for the target loudness level. Default: 89.
-  #r128: Opus                # A space separated list of formats that will use R128_ tags with integer values
-                             # instead of the common REPLAYGAIN_ tags with floating point values.
-                             # Requires the “ffmpeg” backend.
-                             # Default: Opus. 

@@ -12,8 +12,8 @@ plugins:
   chroma,          # Chromaprint/Acoustid Plugin.
   check,           # beets-check will add checksum automatically.
   convert,         # The convert plugin lets you transcoding audio and embedding album art.
-  deezer,          # The deezer plugin provides metadata matches for the importer using the Deezer Album and Track APIs.
-  discogs,         # The discogs plugin extends the autotagger’s search capabilities to include matches from the Discogs database.
+  #deezer,          # The deezer plugin provides metadata matches for the importer using the Deezer Album and Track APIs.
+  #discogs,         # The discogs plugin extends the autotagger’s search capabilities to include matches from the Discogs database.
   duplicates,      # This plugin adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
   edit,            # The edit plugin lets you modify music metadata using your favorite text editor. ToDo: No config file yet.
   extrafiles,      # A plugin for beets that copies additional files and directories during the import process, eg. artwork.
@@ -29,12 +29,16 @@ plugins:
   lyrics,          # The lyrics plugin fetches and stores song lyrics from databases on the Web.
   mbcollection,    # The mbcollection plugin lets you submit your catalog to MusicBrainz to maintain your music collection list there.
   mbsubmit,        # The mbsubmit plugin provides an extra prompt choice during an import session that prints the tracks of the current album in a format that is parseable by MusicBrainz’s track parser.
-  mbsync,          # This plugin provides the mbsync command, which lets you fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
-  missing,         # This plugin adds a new command, missing or miss, which finds and lists, for every album in your collection, which or how many tracks are missing.
+  mbsync,          # This plugin provides the mbsync command,
+                   # which lets you fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
+  missing,         # This plugin adds a new command, missing or miss,
+                   # which finds and lists, for every album in your collection, which or how many tracks are missing.
+  parentwork,      # Fetches the work title, parent work title and parent work composer from MusicBrainz.
   #permissions,    # Set file permissions for imported music files and its directories. Permissions will be adjusted automatically on import.
   #oldestdate,     # Beets plugin that fetches oldest recording or release date for each track.
-  replaygain,      # This plugin adds support for ReplayGain, a technique for normalizing audio playback levels.
+  #replaygain,      # This plugin adds support for ReplayGain, a technique for normalizing audio playback levels.
   #scrub,          # The scrub plugin lets you remove extraneous metadata from files’ tags.
+  unimported,      # Allows to list all files in the library folder which are not listed in the beets library database, including art files.
   #usertag,        # Provides user defined keyword tags for beets.
   web              # The web plugin is a very basic alternative interface to beets that supplements the CLI.
   #zero            # The zero plugin allows you to null fields in files’ metadata tags.
