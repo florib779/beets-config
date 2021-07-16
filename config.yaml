@@ -21,15 +21,6 @@ original_date: yes           # Use the original date for the release.
 per_disc_numbering: yes      # The track numbers are incremented throughout a multi disk release.
 threaded: yes                # Indicating whether the autotagger should use multiple threads.
                              # This makes things substantially faster by overlapping work.
-oldestdate:
-  auto: yes
-  ignore_track_id: yes
-  filter_on_import: yes
-  prompt_missing_work_id: yes
-  force: yes
-  overwrite_year: yes
-  filter_recordings: yes
-  approach: 'releases'
 
 parentwork:                  # This plugin adds five tags:
                              # - parentwork: The title of the parent work.
@@ -157,7 +148,7 @@ acousticbrainz:              # The acousticbrainz plugin gets acoustic-analysis 
   auto: yes                  # Enable AcousticBrainz during beet import. Default: yes.
   force: yes                 # Download AcousticBrainz data even for tracks that already have it. Default: no.
   tags:                      # Which tags from the list above to set on your files. Default: [] (all).
-    [
+    [                        # As far as I know, the following tags couldn't be read by Roon.
     average_loudness,
     bpm,
     chords_changes_rate,
@@ -258,12 +249,6 @@ bandcamp:                    # Uses the bandcamp URL as id (for both albums and 
   split_artist_title: false # If this is true the plugin will try to split the title on `` - `` using the first part as artist and the rest as title.
                              # This can be useful for compilation albums, although you may still need to use the edit Candidates option of the edit plugin.
                              # Default is false.
-###################################################################################################
-
-
-# Deezer ##########################################################################################
-deezer:
-  source_weight: 0.3         # Set to 0.0 to disable. Default: 0.5.
 ###################################################################################################
 
 

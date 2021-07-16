@@ -11,7 +11,6 @@ plugins:
   chroma,          # Chromaprint/Acoustid Plugin.
   check,           # Add checksum automatically.
   convert,         # Lets you transcoding audio and embedding album art.
-  #deezer,         # Provides metadata matches for the importer using the Deezer Album and Track APIs.
   discogs,         # Extends the autotagger’s search capabilities to include matches from the Discogs database.
   duplicates,      # Adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
   edit,            # Lets you modify music metadata using your favorite text editor. ToDo: No config file yet.
@@ -37,10 +36,9 @@ plugins:
                    # which finds and lists, for every album in your collection, which or how many tracks are missing.
   parentwork,      # Fetches the work title, parent work title and parent work composer from MusicBrainz.
   #permissions,    # Set file permissions for imported music files and its directories. Permissions will be adjusted automatically on import.
-  #oldestdate,     # Beets plugin that fetches oldest recording or release date for each track.
   replaygain,      # This plugin adds support for ReplayGain, a technique for normalizing audio playback levels.
   #scrub,          # Lets you remove extraneous metadata from files’ tags.
   unimported,      # Allows to list all files in the library folder which are not listed in the beets library database, including art files.
-  #usertag,        # Provides user defined keyword tags for beets.
+  usertag,        # Provides user defined keyword tags for beets.
   #zero            # Allows you to null fields in files’ metadata tags.
   ]

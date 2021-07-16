@@ -1,4 +1,19 @@
-This is a work, in a very early stage.
+## Warning
+
+This project is in a very early stage and currently more of a draft and also serves me as a backup of my local files (therefore there are updates in relatively short intervals).
+
+The basic functions should work so far and help with the identification of unknown albums. I have only tested all this with a few files at the moment and have not yet run it over my current library.
+
+Before you do this, you should have at least one backup of your current files.
+
+## Why?
+
+Because music files that contain relatively little information and therefore can not always be identified by [Roon](https://roonlabs.com/r/n6HeIaGsYUKKh60AONYs5Q) (Referral Link), I try here to do this by a special configuration of beets by changing the files accordingly.
+
+My plan for the future is to write additional tags (which can be interpreted by Roon) to contain information that may not be present in the Roon database.
+Also, to have functions that Roon can not (yet).
+
+Of course, there is already software that can do this (possibly even better), but I try to automate the import process to the extent that, at best, I don't have to intervene at all.
 
 ## Installation
 
@@ -91,8 +106,6 @@ This is a work, in a very early stage.
 - [ ] Set file permissions for imported music files and its directories.
   * [permissions](https://beets.readthedocs.io/en/latest/plugins/permissions.html) (auto)
 - [x] Fetch oldest recording or release date for each track.
-  * [oldestdate](https://github.com/kernitus/beets-oldestdate)
-    * Copy to pluginpath
 - [x] Add ReplayGain tags for mobile devices.
   * [replaygain](https://beets.readthedocs.io/en/latest/plugins/replaygain.html)
 - [ ] Remove extraneous metadata from files’ tags.
@@ -108,10 +121,12 @@ This is a work, in a very early stage.
   - [ ] `isrc`
   - [ ] `origninalyear`
   - [ ] `artists`
-- [ ] Add own tags, like `ROONALBUMTAG`, `ROONTRACKTAG`, `ROONRADIOBAN` ...
+- [ ] Add Roon specific tags, like `ROONALBUMTAG`, `ROONTRACKTAG`, `ROONRADIOBAN` ...
   - [ ] Write track genres to `ROONTRAGTAG`
   - [ ] Automatically add `ROONRADIOBAN`, value `false`, if the tag doesn't exist.
-  ~* [usertag](https://github.com/igordertigor/beets-usertag)~
+  ~* [usertag](https://github.com/igordertigor/beets-usertag) (manually)~
+- [ ] Copy tags from one to another to get Roon compatibility.
+  * [tagcopy](https://github.com/mattbarnicle/beetsplug)
 - [x] Automatically extract compressed archives in Download directory.
   * Only seem to work for single files, for example: `beet import ~/beets-music/Album.zip`
   * Doesn't work with whitespaces in file names.

@@ -1,6 +1,7 @@
+# Edit this file to fit your system.
+
 directory: ~/beets-music # Destination.
 library: ~/.config/beets/library.db
 pluginpath:
   #- ~/.config/beets/plugins # Does not work.
   - ~/.config/beets/plugins/fetchartist
-  - ~/.config/beets/plugins/oldestdate
