@@ -11,11 +11,12 @@ plugins:
   chroma,          # Chromaprint/Acoustid Plugin.
   check,           # Add checksum automatically.
   convert,         # Lets you transcoding audio and embedding album art.
+  copyartifacts,   # A plugin that moves non-music files during the import process.
   discogs,         # Extends the autotagger’s search capabilities to include matches from the Discogs database.
+  discogs_extradata,
   duplicates,      # Adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
   edit,            # Lets you modify music metadata using your favorite text editor. ToDo: No config file yet.
   embedart,        # Embed the album art directly into each file’s metadata.
-  extrafiles,      # Copies additional files and directories during the import process, eg. artwork.
   fetchart,        # Retrieves album art images from various sources on the Web and stores them as image files.
   fetchartist,     # A plugin that fetches artist covers from last.fm and places them in the artist directories.
   follow,          # Get notifications about new releases from album artists in your Beets library using muspy.
@@ -35,9 +36,8 @@ plugins:
   missing,         # This plugin adds a new command, missing or miss,
                    # which finds and lists, for every album in your collection, which or how many tracks are missing.
   parentwork,      # Fetches the work title, parent work title and parent work composer from MusicBrainz.
-  #permissions,    # Set file permissions for imported music files and its directories. Permissions will be adjusted automatically on import.
+  permissions,    # Set file permissions for imported music files and its directories. Permissions will be adjusted automatically on import.
   replaygain,      # This plugin adds support for ReplayGain, a technique for normalizing audio playback levels.
-  #scrub,          # Lets you remove extraneous metadata from files’ tags.
   unimported,      # Allows to list all files in the library folder which are not listed in the beets library database, including art files.
   usertag,        # Provides user defined keyword tags for beets.
   #zero            # Allows you to null fields in files’ metadata tags.

@@ -3,5 +3,5 @@
 directory: ~/beets-music # Destination.
 library: ~/.config/beets/library.db
 pluginpath:
-  #- ~/.config/beets/plugins # Does not work.
-  - ~/.config/beets/plugins/fetchartist
+  - ~/.config/beets/beetsplug/fetchartist
+  - ~/.config/beets/beetsplug/discogs_extradata
