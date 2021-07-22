@@ -3,13 +3,14 @@
 
 plugins:
   [
-  absubmit,        # Lets you submit acoustic analysis results to the AcousticBrainz server.
+  #absubmit,       # Lets you submit acoustic analysis results to the AcousticBrainz server.
+                   # ToDo: install the extractor binary from https://acousticbrainz.org/download
   acousticbrainz,  # Gets acoustic-analysis information from the AcousticBrainz project.
   badfiles,        # Adds a beet bad command to check for missing and corrupt files.
   bandcamp,        # Use bandcamp as an autotagger source for eg. artwork and lyrics.
   bucket,          # Groups your files into buckets folders representing ranges.
   chroma,          # Chromaprint/Acoustid Plugin.
-  check,           # Add checksum automatically.
+  #check,          # Add checksum automatically.
   convert,         # Lets you transcoding audio and embedding album art.
   copyartifacts,   # A plugin that moves non-music files during the import process.
   discogs,         # Extends the autotagger’s search capabilities to include matches from the Discogs database.
@@ -38,7 +39,7 @@ plugins:
   parentwork,      # Fetches the work title, parent work title and parent work composer from MusicBrainz.
   permissions,    # Set file permissions for imported music files and its directories. Permissions will be adjusted automatically on import.
   replaygain,      # This plugin adds support for ReplayGain, a technique for normalizing audio playback levels.
-  unimported,      # Allows to list all files in the library folder which are not listed in the beets library database, including art files.
-  usertag,        # Provides user defined keyword tags for beets.
+  unimported      # Allows to list all files in the library folder which are not listed in the beets library database, including art files.
+  #usertag,        # Provides user defined keyword tags for beets.
   #zero            # Allows you to null fields in files’ metadata tags.
   ]

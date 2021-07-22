@@ -57,16 +57,6 @@ paths:                       # Directory and naming scheme.
   ext:pdf: $albumpath/scans/booklet
   ###############################################
 
-replace:                     # A set of regular expression/replacement pairs to be applied to all filenames created by beets.
-    '[\\/]': _               # Remove back and forward slashes
-    '^\.': _                 # Remove a single leading dot
-    '[\x00-\x1f]': _         # Remove first 32 control characters
-    '[<>:"\?\*\|]': _
-    '\.$': _                 # Remove a single trailing dot
-    '\s+$': ''               # Remove a trailing white-space
-    '^\s+': ''               # Remove a leading white-space
-    '^-': _ 
-
 max_filename_length: 255     # 0 = unlimited.
 
 ##################################################################################################
@@ -242,9 +232,9 @@ discogs:                     # Matches from Discogs will show up during import a
   source_weight: 0.4         # Set to 0.0 to disable. Default: 0.5.
   index_tracks: yes          # Beets will incorporate the names of the divisions containing each track into the imported track’s title.
 
-discogs_extradata:
+discogs_extradata:           # https://help.roonlabs.com/portal/en/kb/articles/import-settings#Tag_Delimiters_for_ArtistComposerLabel_Tags
     token: 'REDACTED'
-    separator: '|'
+    separator: '; '          # We caution strongly against adding a `','` as a delimiter for Artist/Composer/Label tags.
 
 
 ###################################################################################################
@@ -273,7 +263,7 @@ lastgenre:                   # Fetches tags from Last.fm and assigns them as gen
   fallback: 'Pop/Rock'       # A string if to use a fallback genre when no genre is found.
                              # You can use the empty string '' to reset the genre.
                              # Default: None.
-  separator: ', '
+  separator: '; '
   force: no                  # By default, beets will always fetch new genres, even if the files already have one.
                              # To instead leave genres in place in when they pass the #whitelist: ~/.config/beets/genres.txt,
                              # set the force option to no.
