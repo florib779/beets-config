@@ -82,7 +82,7 @@ import:                      # Beets can move or copy files but it doesn’t mak
                              # Useful when you are only interested in processing medium and strong recommendations interactively.
   timid: no                  # Controlling whether the importer runs in timid mode,
                              # in which it asks for confirmation on every autotagging match, even the ones that seem very close.
-  log: import.log            # You can also use a path.
+  log: /mnt/Music/import.log            # You can also use a path.
   default_action: apply      # One of apply, skip, asis, or none, indicating which option should be the default when selecting an action for a given match.
                              # This is the action that will be taken when you type return without an option letter.
   languages: en de           # Prefer transliterated English names.
@@ -474,7 +474,7 @@ permissions: # octal modes   # Maybe nescessary for smb shares like ROCK or NAS 
 
 # UI ##############################################################################################
 
-verbose: yes
+verbose: no
 
 ui:
     color: yes

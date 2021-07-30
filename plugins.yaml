@@ -10,7 +10,7 @@ plugins:
   bandcamp,        # Use bandcamp as an autotagger source for eg. artwork and lyrics.
   bucket,          # Groups your files into buckets folders representing ranges.
   chroma,          # Chromaprint/Acoustid Plugin.
-  #check,          # Add checksum automatically.
+  check,          # Add checksum automatically.
   convert,         # Lets you transcoding audio and embedding album art.
   copyartifacts,   # A plugin that moves non-music files during the import process.
   discogs,         # Extends the autotagger’s search capabilities to include matches from the Discogs database.

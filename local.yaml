@@ -2,7 +2,7 @@
 
 directory: /mnt/Music/Beets-Test # Destination for testing.
 #directory: /mnt/Music # Destination.
-library: ~/.config/beets/library.db
+library: /mnt/Music/library.db
 pluginpath:
   - ~/.config/beets/beetsplug/fetchartist
   - ~/.config/beets/beetsplug/discogs_extradata
