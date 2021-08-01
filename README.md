@@ -139,7 +139,7 @@ The installation is now Debian Buster based.
 - [ ] Copy tags from one to another to get Roon compatibility.
   - [ ] [tagcopy](https://github.com/mattbarnicle/beetsplug)
 - [x] Automatically extract compressed archives in Download directory.
-  * Only seem to work for single files, for example: `beet import ~/beets-music/Album.zip`
+  * Only seem to work for single files, for example: `beet import /mnt/External/Incoming/Album.zip`
   * Doesn't work with whitespaces in file names.
 - [ ] Assign Qobuz comment/description to the appropriate tags.
   - [ ] [structuredcomments](https://github.com/michaeltoohig/BeetsPluginStructuredComments)
