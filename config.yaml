@@ -360,8 +360,8 @@ embedart:
                              # This option is best used alongside the FetchArt plugin to download art with the purpose
                              # of directly embedding it into the file’s metadata without an “intermediate” album art file.
 
-fetchartist:
-  filename: ''         # It will default to empty and use the artist names.
+#fetchartist:
+#  filename: ''              # It will default to empty and use the artist names.
 
 ###################################################################################################
 
@@ -448,8 +448,8 @@ convert:                     # By default, the command places converted files in
   auto: no                   # Import transcoded versions of your files automatically during imports.
   command: ffmpeg -i $source -sample_fmt s16 -ar 44100 $dest
   extension: flac
-  source: ~/roon_export
-  dest: ~/beets_converted    # Test - change this later
+  source: /mnt/External/Roon-Export
+  dest: /mnt/External/Converted
                              # The directory where the files will be converted (or copied) to. Default: none.
                              # With this option enabled, the importer will transcode all (in the default configuration) non-MP3 files
                              # over the maximum bitrate before adding them to your library.
@@ -508,4 +508,4 @@ hook:
     - event: write
       command: echo "Writing to {path}"
     - event: cli_exit
-      command: echo "Roon optimization finished!"
+      command: echo "All tasks finished!"

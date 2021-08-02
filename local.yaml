@@ -1,7 +1,7 @@
 # Edit this file to fit your system.
 
-directory: /mnt/Music/Beets-Test # Destination for testing.
-#directory: /mnt/Music # Destination.
+#directory: /mnt/Music/Beets-Test # Destination for testing.
+directory: /mnt/Music # Destination.
 library: /mnt/Music/library.db
 pluginpath:
   - ~/.config/beets/beetsplug/fetchartist

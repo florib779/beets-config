@@ -33,8 +33,8 @@ The installation is now Debian Buster based.
 
 ## Goals
 
-- [x] Submit acoustic analysis results to the AcousticBrainz server.
-  - [x] [absubmit](https://beets.readthedocs.io/en/latest/plugins/absubmit.html) (auto)
+- [ ] Submit acoustic analysis results to the AcousticBrainz server.
+  - [ ] [absubmit](https://beets.readthedocs.io/en/latest/plugins/absubmit.html) (auto)
   * Install: `pip3 install requests`
 - [x] Get acoustic-analysis information from the AcousticBrainz project.
   * [acousticbrainz](https://beets.readthedocs.io/en/latest/plugins/acousticbrainz.html) (auto)
@@ -87,17 +87,15 @@ The installation is now Debian Buster based.
     * Command: `beet fetchartist`
     - [ ] `path not found`
 - [x] Follow album artists from your library on Muspy to get notifications about new releases.
-  - [x] [follow](https://github.com/nolsto/beets-follow) (auto) @test
+  - [x] [follow](https://github.com/nolsto/beets-follow) (auto)
     * Install: `pip3 install beets-follow`
 - [x] Tag albums that are missing tags altogether.
   - [x] [fromfilename](https://beets.readthedocs.io/en/latest/plugins/fromfilename.html) (auto)
-- [ ] Fetch data from Gracenote.
-  - [ ] [gracenote](https://github.com/theEndBeta/beets-gracenote) (auto)
-- [ ] Preserve the import date.
-  - [ ] [importadded](https://beets.readthedocs.io/en/latest/plugins/importadded.html)
-- [ ] Dump the current tag values for any file format supported by beets.
-  - [ ] [info](https://beets.readthedocs.io/en/latest/plugins/info.html) (manually)
-- [ ] Collect play counts from Last.fm. Doesn't make any sense for the use with Roon yet.
+- [x] Preserve the import date.
+  - [x] [importadded](https://beets.readthedocs.io/en/latest/plugins/importadded.html)
+- [x] Dump the current tag values for any file format supported by beets.
+  - [x] [info](https://beets.readthedocs.io/en/latest/plugins/info.html) (manually)
+- [x] Collect play counts from Last.fm. Doesn't make any sense for the use with Roon yet.
   - [x] [lastimport](https://beets.readthedocs.io/en/latest/plugins/lastimport.html) (manually)
     * Install: `pip3 install pylast`
     * Command: `beet -v lastimport`
@@ -111,7 +109,7 @@ The installation is now Debian Buster based.
     * Install: `pip3 install requests` `pip3 install beautifulsoup4`
 - [x] Submit the catalog to MusicBrainz to maintain the music collection list there. (auto)
   - [x] [mbcollection](https://beets.readthedocs.io/en/latest/plugins/mbcollection.html)
-  - [ ] Remove (manually): `beet mbupdate -r`
+  * Remove (manually): `beet mbupdate -r`
 - [x] Fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
   - [x] [mbsync](https://beets.readthedocs.io/en/latest/plugins/mbsync.html)
 - [x] Find and list, which or how many tracks are missing, for every album in the collection.
@@ -122,10 +120,8 @@ The installation is now Debian Buster based.
   - [x] [replaygain](https://beets.readthedocs.io/en/latest/plugins/replaygain.html)
 - [x] List all files in the library folder which are not listed in the beets library database.
   - [x] [unimported](https://beets.readthedocs.io/en/latest/plugins/unimported.html)
-- [ ] Null fields in files’ metadata tags.
 - [ ] Watch directories for changes and trigger imports.
   * [watch](https://github.com/zersetz-end/beets-watch)
-  * [zero](https://beets.readthedocs.io/en/latest/plugins/zero.html)
 - [ ] Fetch tags:
   - [ ] `website`
   - [ ] `barcode`
@@ -135,7 +131,7 @@ The installation is now Debian Buster based.
 - [ ] Add Roon specific tags, like `ROONALBUMTAG`, `ROONTRACKTAG`, `ROONRADIOBAN` ...
   - [ ] Write track genres to `ROONTRAGTAG`
   - [ ] Automatically add `ROONRADIOBAN`, value `false`, if the tag doesn't exist.
-  ~- [ ] [usertag](https://github.com/igordertigor/beets-usertag) (manually)~
+  - [ ] [usertag](https://github.com/igordertigor/beets-usertag) (manually)
 - [ ] Copy tags from one to another to get Roon compatibility.
   - [ ] [tagcopy](https://github.com/mattbarnicle/beetsplug)
 - [x] Automatically extract compressed archives in Download directory.
@@ -207,6 +203,7 @@ You will also need to install `bash-completion` for this to work.
 * [Documentation](https://beets.readthedocs.io)
 * [Beets @ jundar.de (German)](https://jundar.de/beets-konfigurieren/)
 * [Beets Docker](https://blog.linuxserver.io/2016/10/08/managing-your-music-collection-with-beets/)
+* [music-workflow](https://github.com/djdembeck/music-workflow)
 
 ### Configs
 
@@ -214,3 +211,7 @@ You will also need to install `bash-completion` for this to work.
 * https://github.com/kergoth/Beets-Library
 * https://github.com/RollingStar/dial-beets
 * https://github.com/trapd00r/configs/tree/master/beets
+
+### Similar
+
+* [roon-tagger](https://github.com/babysnakes/roon-tagger)
