@@ -42,8 +42,8 @@ The installation is now Debian Buster based.
   - [x] [badfiles](https://beets.readthedocs.io/en/latest/plugins/badfiles.html) (manually)
     * Command: `beet bad`
 - [x] Use bandcamp as an autotagger source, for fetching lyrics and cover art.
-  - [x] [bandcamp](https://github.com/unrblt/beets-bandcamp) (auto) @test
-    * Install: `pip3 install beets-bandcamp`
+  - [x] [bandcamp](https://github.com/snejus/beetcamp) (auto) @test
+    * Install: `pip3 install beetcamp`
 - [x] Create folders with the first letters of the band names and assign them accordingly.
   - [x] [bucket](https://beets.readthedocs.io/en/latest/plugins/bucket.html)
 - [x] Automatically checksum files to detect corruption.
