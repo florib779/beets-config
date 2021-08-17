@@ -19,17 +19,21 @@ Of course, there is already software that can do this (possibly even better), bu
 
 The installation is now Debian Buster based.
 
-`sudo apt install libgstreamer1.0-0 imagemagick`
+`docker pull ghcr.io/linuxserver/beets`
 
-`pip3 install https://github.com/beetbox/beets/tarball/master`
-
-### Create a symlink
-
-`sudo ln -s ~/.local/bin /usr/local/bin`
-
-### Update
-
-`pip3 install -U https://github.com/beetbox/beets/tarball/master`
+``` 
+docker run -d \
+  --name=beets \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/Berlin \
+  -p 8337:8337 \
+  -v /home/flori/config:/config \
+  -v /mnt/Music>:/music \
+  -v /mnt/External/Incoming:/downloads \
+  --restart unless-stopped \
+  ghcr.io/linuxserver/beets
+```
 
 ## Goals
 
