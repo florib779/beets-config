@@ -28,7 +28,7 @@ plugins:
   importadded,     # Useful when an existing collection is imported and the time when albums and items were added should be preserved.
   info,            # The info plugin provides a command that dumps the current tag values for any file format supported by beets.
   lastimport,      # Doesn't write tags to files - only database. So not useful at the moment.
-  lastgenre,       # Fetches tags from Last.fm and assigns them as genres to your albums and items.
+  #lastgenre,      # Fetches tags from Last.fm and assigns them as genres to your albums and items.
   lyrics,          # Fetches and stores song lyrics from databases on the Web.
   mbcollection,    # Lets you submit your catalog to MusicBrainz to maintain your music collection list there.
   mbsubmit,        # Provides an extra prompt choice during an import session that prints the tracks
@@ -41,4 +41,5 @@ plugins:
   permissions,     # Set file permissions for imported music files and its directories. Permissions will be adjusted automatically on import.
   replaygain,      # This plugin adds support for ReplayGain, a technique for normalizing audio playback levels.
   unimported       # Allows to list all files in the library folder which are not listed in the beets library database, including art files.
+  #wlg             # Fetch genres from Discogs, Last.FM, MusicBrainz, Redacted.ch.
   ]

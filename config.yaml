@@ -262,6 +262,39 @@ types:
   play_count: int
   rating: float
 
+wlg:
+  auto: no
+  force: no
+  count: 4
+  separator: '; '
+  whitelist: wlg
+  #############################################
+  # Configuration options from the standalone version of whatlastgenre (https://github.com/YetAnotherNerd/whatlastgenre)
+  # Don't know if it will work with Beets.
+  #sources: discogs, lastfm, redacted
+  #tagsfile:
+  #id3v23sep:
+  #genres:
+    #love: trip-rock
+    #hate: alternative, electronic, indie, pop, rock
+  #scores:
+    #artist: 1.33
+    #various: 0.66
+    #splitup: 0.33
+    #minimum: 0.10
+    #src_discogs: 1.00
+    #src_lastfm: 0.66
+    #src_mbrainz: 0.66
+    #src_redacted: 1.50
+  #discogs: # Already exists.
+    #token:
+    #secret:
+  #redacted:
+    #username:
+    #password:
+    #session:
+  ###############################################
+
 lastgenre:                   # Fetches tags from Last.fm and assigns them as genres to your albums and items.
   auto: yes                  # Fetch genres automatically during import. Default: yes.
   canonical: ~/.config/beets/genres/genres-tree.yaml 
@@ -485,7 +518,7 @@ permissions: # octal modes   # Maybe nescessary for smb shares like ROCK or NAS 
 
 # UI ##############################################################################################
 
-verbose: no
+verbose: yes
 
 ui:
     color: yes

@@ -103,7 +103,8 @@ The installation is now Debian Buster based.
 - [x] Fetch genres from Last.fm. MusicBrainz actually doesn’t contain genre information and set a fallback genre if none is available.
   - [x] [lastgenre](https://beets.readthedocs.io/en/latest/plugins/lastgenre.html)
     * Install: `pip3 install pylast`
-  - [x] [whatlastgenre](https://github.com/YetAnotherNerd/whatlastgenre)
+  - [ ] [whatlastgenre](https://github.com/YetAnotherNerd/whatlastgenre)
+    * Discogs, Last.FM, MusicBrainz, Redacted.ch
 - [x] Fetch lyrics from various sources.
   - [x] [lyrics](https://beets.readthedocs.io/en/latest/plugins/lyrics.html)
     * Install: `pip3 install requests` `pip3 install beautifulsoup4`
