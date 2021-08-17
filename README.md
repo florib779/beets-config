@@ -19,21 +19,17 @@ Of course, there is already software that can do this (possibly even better), bu
 
 The installation is now Debian Buster based.
 
-`docker pull ghcr.io/linuxserver/beets`
+`sudo apt install libgstreamer1.0-0 imagemagick`
 
-``` 
-docker run -d \
-  --name=beets \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=Europe/Berlin \
-  -p 8337:8337 \
-  -v /home/flori/config:/config \
-  -v /mnt/Music>:/music \
-  -v /mnt/External/Incoming:/downloads \
-  --restart unless-stopped \
-  ghcr.io/linuxserver/beets
-```
+`pip3 install https://github.com/beetbox/beets/tarball/master`
+
+### Create a symlink
+
+`sudo ln -s ~/.local/bin /usr/local/bin`
+
+### Update
+
+`pip3 install -U https://github.com/beetbox/beets/tarball/master`
 
 ## Goals
 
@@ -107,7 +103,8 @@ docker run -d \
 - [x] Fetch genres from Last.fm. MusicBrainz actually doesn’t contain genre information and set a fallback genre if none is available.
   - [x] [lastgenre](https://beets.readthedocs.io/en/latest/plugins/lastgenre.html)
     * Install: `pip3 install pylast`
-  - [x] [whatlastgenre](https://github.com/YetAnotherNerd/whatlastgenre)
+  - [ ] [whatlastgenre](https://github.com/YetAnotherNerd/whatlastgenre)
+    * Discogs, Last.FM, MusicBrainz, Redacted.ch
 - [x] Fetch lyrics from various sources.
   - [x] [lyrics](https://beets.readthedocs.io/en/latest/plugins/lyrics.html)
     * Install: `pip3 install requests` `pip3 install beautifulsoup4`
