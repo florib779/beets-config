@@ -35,7 +35,7 @@ ToDo:
 
 ### Create a symlink
 
-`sudo ln -s ~/.local/bin /usr/local/bin`
+`sudo ln -s ~/.local/bin /usr/local/bin && sudo reboot`
 
 ### Update
 
