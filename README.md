@@ -17,11 +17,21 @@ Of course, there is already software that can do this (possibly even better), bu
 
 ## Installation
 
-The installation is now Debian Buster based.
+The installation is now [Debian Bullseye](https://www.debian.org/releases/bullseye/index.en.html) based.
 
-`sudo apt install libgstreamer1.0-0 imagemagick`
+~`sudo apt install libgstreamer1.0-0 imagemagick`~
+
+`sudo apt install -y python3-pip`
 
 `pip3 install https://github.com/beetbox/beets/tarball/master`
+
+ToDo:
+```WARNING: The scripts mid3cp, mid3iconv, mid3v2, moggsplit, mutagen-inspect and mutagen-pony are installed in '/home/flori/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script unidecode is installed in '/home/flori/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script beet is installed in '/home/flori/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.```
 
 ### Create a symlink
 
