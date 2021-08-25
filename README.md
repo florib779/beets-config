@@ -21,7 +21,7 @@ The installation is now [Debian Bullseye](https://www.debian.org/releases/bullse
 
 ~`sudo apt install libgstreamer1.0-0 imagemagick`~
 
-`sudo apt install -y python3-pip`
+`sudo apt install -y python3-pip imagemagick`
 
 `pip3 install https://github.com/beetbox/beets/tarball/master`
 
