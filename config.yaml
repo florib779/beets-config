@@ -82,7 +82,7 @@ import:                      # Beets can move or copy files but it doesn’t mak
                              # Useful when you are only interested in processing medium and strong recommendations interactively.
   timid: no                  # Controlling whether the importer runs in timid mode,
                              # in which it asks for confirmation on every autotagging match, even the ones that seem very close.
-  log: /mnt/Music/import.log            # You can also use a path.
+  log: /mnt/internal/music/import.log
   default_action: apply      # One of apply, skip, asis, or none, indicating which option should be the default when selecting an action for a given match.
                              # This is the action that will be taken when you type return without an option letter.
   languages: en de           # Prefer transliterated English names.
@@ -213,7 +213,7 @@ mbsubmit:                    # As MusicBrainz currently does not support submitt
 
 # Bandcamp ########################################################################################
 
-bandcamp:                    # Uses the bandcamp URL as id (for both albums and songs).
+bandcamp:                    # Beetcamp. Uses the bandcamp URL as id (for both albums and songs).
                              # If no matching release is found when importing you can select enter Id and paste the bandcamp URL.
 
     preferred_media: Digital # A comma-separated list of media to prioritise when fetching albums.
@@ -227,8 +227,9 @@ bandcamp:                    # Uses the bandcamp URL as id (for both albums and 
     art: true                # Add a source to the FetchArt plug-in to download album art for Bandcamp albums
                              # (requires FetchArt plug-in enabled).
 
-    #exclude_extra_fields:   # The data that is added after the core auto tagging process is considered extra:                      
-      #- lyrics              # (currently) lyrics and comments (release description) fields.
+    exclude_extra_fields:   # The data that is added after the core auto tagging process is considered extra:                      
+      - lyrics               # (currently) lyrics and comments (release description) fields.
+                             # ToDo: If no lyrics are found, it writes "none"
       #- comments            # Since there yet isn't an easy way to preview them before they get applied,
                              # you can ignore them if you find them irrelevant or inaccurate.
 
@@ -415,7 +416,7 @@ embedart:
 replaygain:
   auto: yes                  # Enable ReplayGain analysis during import. Default: yes.
                              # ReplayGain analysis is not fast, so you may want to disable it during import.
-  backend: gstreamer         # The analysis backend; either gstreamer, command, or audiotools. Default: command.
+  backend: ffmpeg            # The analysis backend; either gstreamer, command, or audiotools. Default: command.
   overwrite: no              # Re-analyze files that already have ReplayGain tags. Default: no.
   targetlevel: 89            # A number of decibels for the target loudness level. Default: 89.
   per_disc: no               # Calculate album ReplayGain on disc level instead of album level. Default: no.
@@ -492,8 +493,8 @@ convert:                     # By default, the command places converted files in
   auto: no                   # Import transcoded versions of your files automatically during imports.
   command: ffmpeg -i $source -sample_fmt s16 -ar 44100 $dest
   extension: flac
-  source: /mnt/External/Roon-Export
-  dest: /mnt/External/Converted
+  source: /mnt/external/work/roon-export
+  dest: /mnt/external/work/converted
                              # The directory where the files will be converted (or copied) to. Default: none.
                              # With this option enabled, the importer will transcode all (in the default configuration) non-MP3 files
                              # over the maximum bitrate before adding them to your library.
