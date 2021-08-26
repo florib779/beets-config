@@ -143,7 +143,7 @@ The installation is now [Debian Bullseye](https://www.debian.org/releases/bullse
 - [ ] Copy tags from one to another to get Roon compatibility.
   - [ ] [tagcopy](https://github.com/mattbarnicle/beetsplug)
 - [x] Automatically extract compressed archives in Download directory.
-  * Only seem to work for single files, for example: `beet import /mnt/External/Incoming/Album.zip`
+  * Only seem to work for single files, for example: `beet import /mnt/external/work/incoming/Album.zip`
   * Doesn't work with whitespaces in file names.
 - [ ] Assign Qobuz comment/description to the appropriate tags.
   - [ ] [structuredcomments](https://github.com/michaeltoohig/BeetsPluginStructuredComments)
@@ -154,29 +154,29 @@ The installation is now [Debian Bullseye](https://www.debian.org/releases/bullse
 
 ## Beets commands
 
-Of course, the given commands assume that the music files to import are located in `/mnt/External/Incoming/`, otherwise the path must be changed.
+Of course, the given commands assume that the music files to import are located in `/mnt/external/work/incoming/`, otherwise the path must be changed.
 
-`beet import /mnt/External/Incoming/` # Import and change tags.
+`beet import /mnt/external/work/incoming/` # Import and change tags.
 
-`beet import -A /mnt/External/Incoming/` # Import but don't change any tags.
+`beet import -A /mnt/external/work/incoming/` # Import but don't change any tags.
 
-`beet import -W /mnt/External/Incoming/` # When autotagging, don’t write new tags to the files themselves (just keep the new metadata in beets’ database.)
+`beet import -W /mnt/external/work/incoming/` # When autotagging, don’t write new tags to the files themselves (just keep the new metadata in beets’ database.)
 
-`beet import -C /mnt/External/Incoming/` # Don’t copy imported files to your music directory; leave them where they are.
+`beet import -C /mnt/external/work/incoming/` # Don’t copy imported files to your music directory; leave them where they are.
 
-`beet import -m /mnt/External/Incoming/` # Move imported files to your music directory (overrides the -c option).
+`beet import -m /mnt/external/work/incoming/` # Move imported files to your music directory (overrides the -c option).
 
-`beet import -l LOGFILE /mnt/External/Incoming/` # Write a message to `LOGFILE` every time you skip an album or choose to take its tags “as-is” (see below) or the album is skipped as a duplicate; this lets you come back later and reexamine albums that weren’t tagged successfully.
+`beet import -l LOGFILE /mnt/external/work/incoming/` # Write a message to `LOGFILE` every time you skip an album or choose to take its tags “as-is” (see below) or the album is skipped as a duplicate; this lets you come back later and reexamine albums that weren’t tagged successfully.
 
-`beet import -q /mnt/External/Incoming/` # Quiet mode. Never prompt for input and, instead, conservatively skip any albums that need your opinion. The `-ql` combination is recommended.
+`beet import -q /mnt/external/work/incoming/` # Quiet mode. Never prompt for input and, instead, conservatively skip any albums that need your opinion. The `-ql` combination is recommended.
 
-`beet import -t /mnt/External/Incoming/` # Timid mode, which is sort of the opposite of “quiet.” The importer will ask your permission for everything it does, confirming even very good matches with a prompt.
+`beet import -t /mnt/external/work/incoming/` # Timid mode, which is sort of the opposite of “quiet.” The importer will ask your permission for everything it does, confirming even very good matches with a prompt.
 
-`beet import -p /mnt/External/Incoming/` # Automatically resume an interrupted import. The importer keeps track of imports that don’t finish completely (either due to a crash or because you stop them halfway through) and, by default, prompts you to decide whether to resume them. The `-p` flag automatically says “yes” to this question. Relatedly, `-P` flag automatically says “no.”
+`beet import -p /mnt/external/work/incoming/` # Automatically resume an interrupted import. The importer keeps track of imports that don’t finish completely (either due to a crash or because you stop them halfway through) and, by default, prompts you to decide whether to resume them. The `-p` flag automatically says “yes” to this question. Relatedly, `-P` flag automatically says “no.”
 
-`beet import -s /mnt/External/Incoming/` # Run in singleton mode, tagging individual tracks instead of whole albums at a time. See the “as Tracks” choice below. This means you can use beet import `-AC` to quickly add a bunch of files to your library without doing anything to them.
+`beet import -s /mnt/external/work/incoming/` # Run in singleton mode, tagging individual tracks instead of whole albums at a time. See the “as Tracks” choice below. This means you can use beet import `-AC` to quickly add a bunch of files to your library without doing anything to them.
 
-`beet import -g /mnt/External/Incoming/` # Assume there are multiple albums contained in each directory. The tracks contained a directory are grouped by album artist and album name and you will be asked to import each of these groups separately. See the “Group albums” choice below.
+`beet import -g /mnt/external/work/incoming/` # Assume there are multiple albums contained in each directory. The tracks contained a directory are grouped by album artist and album name and you will be asked to import each of these groups separately. See the “Group albums” choice below.
 
 
 
