@@ -6,21 +6,21 @@ plugins:
   #absubmit,       # Lets you submit acoustic analysis results to the AcousticBrainz server.
                    # ToDo: install the extractor binary from https://acousticbrainz.org/download
   acousticbrainz,  # Gets acoustic-analysis information from the AcousticBrainz project.
-  badfiles,        # Adds a beet bad command to check for missing and corrupt files.
-  bandcamp,        # Use bandcamp as an autotagger source for eg. artwork and lyrics.
+  badfiles,        # ToDo. Adds a beet bad command to check for missing and corrupt files.
+  bandcamp,        # Beetcamp. Use bandcamp as an autotagger source for eg. artwork and lyrics.
   bucket,          # Groups your files into buckets folders representing ranges.
   chroma,          # Chromaprint/Acoustid Plugin.
   check,           # Add checksum automatically.
   convert,         # Lets you transcoding audio and embedding album art.
   copyartifacts,   # A plugin that moves non-music files during the import process.
   discogs,         # Extends the autotagger’s search capabilities to include matches from the Discogs database.
-  discogs_extradata,
+  #discogs_extradata, # ToDo: No host address of the plugin found
   duplicates,      # Adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
   edit,            # Lets you modify music metadata using your favorite text editor. ToDo: No config file yet.
   embedart,        # Embed the album art directly into each file’s metadata.
   export,          # Lets you get data from the items and export the content as JSON, CSV, or XML.
   fetchart,        # Retrieves album art images from various sources on the Web and stores them as image files.
-  fetchartist,     # A plugin that fetches artist covers from last.fm and places them in the artist directories.
+  #fetchartist,     # A plugin that fetches artist covers from last.fm and places them in the artist directories.
   follow,          # Get notifications about new releases from album artists in your Beets library using muspy.
   fromfilename,    # The FromFilename plugin adds the ability to guess tags from the filenames.
                    # Use this plugin if your tracks have useful names (like “03 Call Me Maybe.mp3”) but their tags don’t reflect that.
