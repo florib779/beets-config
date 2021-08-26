@@ -19,19 +19,14 @@ Of course, there is already software that can do this (possibly even better), bu
 
 The installation is now [Debian Bullseye](https://www.debian.org/releases/bullseye/index.en.html) based.
 
-~`sudo apt install libgstreamer1.0-0 imagemagick`~
+`sudo apt install -y python3-pip python3-gi`
 
-`sudo apt install -y python3-pip imagemagick`
+`pip3 install beets`
 
-`pip3 install https://github.com/beetbox/beets/tarball/master`
 
-ToDo:
-```WARNING: The scripts mid3cp, mid3iconv, mid3v2, moggsplit, mutagen-inspect and mutagen-pony are installed in '/home/flori/.local/bin' which is not on PATH.
-  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
-  WARNING: The script unidecode is installed in '/home/flori/.local/bin' which is not on PATH.
-  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
-  WARNING: The script beet is installed in '/home/flori/.local/bin' which is not on PATH.
-  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.```
+### ToDo:
+
+`ImageMagick version check failed: [Errno 2] No such file or directory: 'magick'`
 
 ### Create a symlink
 
@@ -39,7 +34,9 @@ ToDo:
 
 ### Update
 
-`pip3 install -U https://github.com/beetbox/beets/tarball/master`
+`pip3 -U install beets`
+
+~`pip3 install -U https://github.com/beetbox/beets/tarball/master`~
 
 ## Goals
 
@@ -117,10 +114,10 @@ ToDo:
     * Discogs, Last.FM, MusicBrainz, Redacted.ch
 - [x] Fetch lyrics from various sources.
   - [x] [lyrics](https://beets.readthedocs.io/en/latest/plugins/lyrics.html)
-    * Install: `pip3 install requests` `pip3 install beautifulsoup4`
+    * Install: `pip3 install requests beautifulsoup4`
 - [x] Submit the catalog to MusicBrainz to maintain the music collection list there. (auto)
   - [x] [mbcollection](https://beets.readthedocs.io/en/latest/plugins/mbcollection.html)
-  * Remove (manually): `beet mbupdate -r`
+  * Remove Album from collection (manually): `beet mbupdate -r`
 - [x] Fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
   - [x] [mbsync](https://beets.readthedocs.io/en/latest/plugins/mbsync.html)
 - [x] Find and list, which or how many tracks are missing, for every album in the collection.
