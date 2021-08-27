@@ -19,7 +19,7 @@ Of course, there is already software that can do this (possibly even better), bu
 
 The installation is now [Debian Bullseye](https://www.debian.org/releases/bullseye/index.en.html) based.
 
-`sudo apt install -y python3-pip python3-gi`
+`sudo apt install -y python3-pip python3-gi imagemagick`
 
 `pip3 install beets`
 
