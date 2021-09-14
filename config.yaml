@@ -44,7 +44,6 @@ bucket:
   bucket_alpha_regex:
     [A-Z]                    # Create folders with the first letters of the band names.
 
-# ToDo
 paths:                       # Directory and naming scheme.
                              # The aunique{} function ensures that identically-named albums are placed in different directories.
   default: %bucket{$artist,alpha}/$albumartist/$album%aunique{}/$track $title
@@ -214,11 +213,6 @@ mbsubmit:                    # As MusicBrainz currently does not support submitt
 
 # Bandcamp ########################################################################################
 
-# beets-bandcamp
-#  lyrics: true
-#  art: true
-#  split_artist_title: false
-
 # beetcamp
 bandcamp:                    # Beetcamp. Uses the bandcamp URL as id (for both albums and songs).
                              # If no matching release is found when importing you can select enter Id and paste the bandcamp URL.
@@ -236,24 +230,8 @@ bandcamp:                    # Beetcamp. Uses the bandcamp URL as id (for both a
 
     #exclude_extra_fields:   # The data that is added after the core auto tagging process is considered extra:                      
       #- lyrics              # (currently) lyrics and comments (release description) fields.
-                             # ToDo: If no lyrics are found, it writes "none"
       #- comments            # Since there yet isn't an easy way to preview them before they get applied,
                              # you can ignore them if you find them irrelevant or inaccurate.
-
-###################################################################################################
-
-
-# Discogs #########################################################################################
-
-discogs:                     # Matches from Discogs will show up during import alongside matches from MusicBrainz.
-                             # This plugin can be configured like other metadata source plugins as described in Using Metadata Source Plugins.
-  source_weight: 0.4         # Set to 0.0 to disable. Default: 0.5.
-  index_tracks: yes          # Beets will incorporate the names of the divisions containing each track into the imported track’s title.
-
-discogs_extradata:           # https://help.roonlabs.com/portal/en/kb/articles/import-settings#Tag_Delimiters_for_ArtistComposerLabel_Tags
-    token: 'REDACTED'
-    separator: '; '          # We caution strongly against adding a `','` as a delimiter for Artist/Composer/Label tags.
-
 
 ###################################################################################################
 
@@ -269,39 +247,6 @@ lastfm:
 types:
   play_count: int
   rating: float
-
-wlg:
-  auto: no
-  force: no
-  count: 4
-  separator: '; '
-  whitelist: wlg
-  #############################################
-  # Configuration options from the standalone version of whatlastgenre (https://github.com/YetAnotherNerd/whatlastgenre)
-  # Don't know if it will work with Beets.
-  #sources: discogs, lastfm, redacted
-  #tagsfile:
-  #id3v23sep:
-  #genres:
-    #love: trip-rock
-    #hate: alternative, electronic, indie, pop, rock
-  #scores:
-    #artist: 1.33
-    #various: 0.66
-    #splitup: 0.33
-    #minimum: 0.10
-    #src_discogs: 1.00
-    #src_lastfm: 0.66
-    #src_mbrainz: 0.66
-    #src_redacted: 1.50
-  #discogs: # Already exists.
-    #token:
-    #secret:
-  #redacted:
-    #username:
-    #password:
-    #session:
-  ###############################################
 
 lastgenre:                   # Fetches tags from Last.fm and assigns them as genres to your albums and items.
   auto: yes                  # Fetch genres automatically during import. Default: yes.
@@ -321,6 +266,7 @@ lastgenre:                   # Fetches tags from Last.fm and assigns them as gen
   min_weight: 10             # Minimum popularity factor below which genres are discarded. Default: 10.
   prefer_specific: no        # Sort genres by the most to least specific, rather than most to least popular. Default: no.
   source: track              # Which entity to look up in Last.fm. Can be either artist, album or track. Default: album. 
+  title_case: yes            # Convert the new tags to TitleCase before saving. Default: yes.
 
 ###################################################################################################
 
@@ -383,19 +329,12 @@ fetchart:
   minwidth: 1000             # Only images with a width bigger or equal to minwidth are considered as valid album art candidates.
   maxwidth: 3000             # A maximum image width to downscale fetched images if they are too big.
                              # The height is recomputed so that the aspect ratio is preserved.
-  high_resolution: true      # Allow downloading of higher resolution iTunes artwork. Files can have up to 20MB
   sources:                   # An asterisk * expands to all available sources.
     - filesystem             # No remote art sources are queried if local art is found in the filesystem.
     - coverart
     - albumart
     - fanarttv
     - bandcamp
-    #- wikipedia
-    #- google
-    #- itunes
-    #- amazon
-  #google_engine:            # ID of the custom search engine to use.
-  #google_key:               # API key to use for the search API.
   fanarttv_key: REDACTED     # API key to use for the fanart API.
   store_source: yes          # Store the art source (e.g. filesystem) in the beets database as art_source.
 
@@ -411,9 +350,6 @@ embedart:
   remove_art_file: no        # Automatically remove the album art file for the album after it has been embedded.
                              # This option is best used alongside the FetchArt plugin to download art with the purpose
                              # of directly embedding it into the file’s metadata without an “intermediate” album art file.
-
-#fetchartist:
-#  filename: ''              # It will default to empty and use the artist names.
 
 ###################################################################################################
 
@@ -560,4 +496,4 @@ hook:
     - event: write
       command: echo "Writing to {path}"
     - event: cli_exit
-      command: echo "Roon import finished!"
+      command: echo "All tasks finished!"

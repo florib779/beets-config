@@ -23,11 +23,6 @@ The installation is [Debian Bullseye](https://www.debian.org/releases/bullseye/i
 
 `pip3 install beets`
 
-
-### ToDo:
-
-`ImageMagick version check failed: [Errno 2] No such file or directory: 'magick'`
-
 ### Create a symlink
 
 `sudo ln -s ~/.local/bin /usr/local/bin && sudo reboot`
