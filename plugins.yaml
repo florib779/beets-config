@@ -13,14 +13,14 @@ plugins:
   check,           # Add checksum automatically.
   convert,         # Lets you transcoding audio and embedding album art.
   copyartifacts,   # A plugin that moves non-music files during the import process.
-  discogs,         # Extends the autotagger’s search capabilities to include matches from the Discogs database.
+  #discogs,        # Extends the autotagger’s search capabilities to include matches from the Discogs database.
   #discogs_extradata, # ToDo: No host address of the plugin found
   duplicates,      # Adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
   edit,            # Lets you modify music metadata using your favorite text editor. ToDo: No config file yet.
   embedart,        # Embed the album art directly into each file’s metadata.
   export,          # Lets you get data from the items and export the content as JSON, CSV, or XML.
   fetchart,        # Retrieves album art images from various sources on the Web and stores them as image files.
-  #fetchartist,     # A plugin that fetches artist covers from last.fm and places them in the artist directories.
+  #fetchartist,    # A plugin that fetches artist covers from last.fm and places them in the artist directories.
   follow,          # Get notifications about new releases from album artists in your Beets library using muspy.
   fromfilename,    # The FromFilename plugin adds the ability to guess tags from the filenames.
                    # Use this plugin if your tracks have useful names (like “03 Call Me Maybe.mp3”) but their tags don’t reflect that.
@@ -28,7 +28,7 @@ plugins:
   importadded,     # Useful when an existing collection is imported and the time when albums and items were added should be preserved.
   info,            # The info plugin provides a command that dumps the current tag values for any file format supported by beets.
   lastimport,      # Doesn't write tags to files - only database. So not useful at the moment.
-  #lastgenre,      # Fetches tags from Last.fm and assigns them as genres to your albums and items.
+  lastgenre,       # Fetches tags from Last.fm and assigns them as genres to your albums and items.
   lyrics,          # Fetches and stores song lyrics from databases on the Web.
   mbcollection,    # Lets you submit your catalog to MusicBrainz to maintain your music collection list there.
   mbsubmit,        # Provides an extra prompt choice during an import session that prints the tracks

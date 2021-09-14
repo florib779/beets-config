@@ -44,6 +44,7 @@ bucket:
   bucket_alpha_regex:
     [A-Z]                    # Create folders with the first letters of the band names.
 
+# ToDo
 paths:                       # Directory and naming scheme.
                              # The aunique{} function ensures that identically-named albums are placed in different directories.
   default: %bucket{$artist,alpha}/$albumartist/$album%aunique{}/$track $title
@@ -66,9 +67,9 @@ max_filename_length: 255     # 0 = unlimited.
 
 import:                      # Beets can move or copy files but it doesn’t make sense to do both).
   write: yes                 # Controlling whether metadata (e.g., ID3) tags are written to files when using beet import.
-  copy: yes                   # Keep your current directory structure.
+  #copy: yes                 # Keep your current directory structure.
                              # The option is ignored if move is enabled (i.e., beets can move or copy files but it doesn’t make sense to do both).
-  move: no                  # Move the files. Otherwise there will be duplicates.
+  move: yes                  # Move the files. Otherwise there will be duplicates.
   resume: yes                #  Controls whether interrupted imports should be resumed.
                              # “Yes” means that imports are always resumed when possible;
                              # “no” means resuming is disabled entirely;
@@ -213,6 +214,12 @@ mbsubmit:                    # As MusicBrainz currently does not support submitt
 
 # Bandcamp ########################################################################################
 
+# beets-bandcamp
+#  lyrics: true
+#  art: true
+#  split_artist_title: false
+
+# beetcamp
 bandcamp:                    # Beetcamp. Uses the bandcamp URL as id (for both albums and songs).
                              # If no matching release is found when importing you can select enter Id and paste the bandcamp URL.
 
@@ -227,8 +234,8 @@ bandcamp:                    # Beetcamp. Uses the bandcamp URL as id (for both a
     art: true                # Add a source to the FetchArt plug-in to download album art for Bandcamp albums
                              # (requires FetchArt plug-in enabled).
 
-    exclude_extra_fields:   # The data that is added after the core auto tagging process is considered extra:                      
-      - lyrics               # (currently) lyrics and comments (release description) fields.
+    #exclude_extra_fields:   # The data that is added after the core auto tagging process is considered extra:                      
+      #- lyrics              # (currently) lyrics and comments (release description) fields.
                              # ToDo: If no lyrics are found, it writes "none"
       #- comments            # Since there yet isn't an easy way to preview them before they get applied,
                              # you can ignore them if you find them irrelevant or inaccurate.
@@ -519,7 +526,7 @@ permissions: # octal modes   # Maybe nescessary for smb shares like ROCK or NAS 
 
 # UI ##############################################################################################
 
-verbose: yes
+verbose: no
 
 ui:
     color: yes
@@ -543,7 +550,7 @@ hook:
     - event: art_set
       command: echo "Coverart saved"
     - event: import_begin
-      command: echo "Import started..."
+      command: echo "Roon import started..."
     - event: import_task_apply
       command: echo "Metadata applied"
     - event: item_copied
@@ -553,4 +560,4 @@ hook:
     - event: write
       command: echo "Writing to {path}"
     - event: cli_exit
-      command: echo "All tasks finished!"
+      command: echo "Roon import finished!"
