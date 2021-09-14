@@ -11,6 +11,7 @@
 # Ignore these files/folders
 _drafts
 .ssh
+discogs_token.json
 gitpush.sh
 secrets.yaml
-
+state.pickle
